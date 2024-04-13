@@ -23,7 +23,7 @@ int main()
 	//z.addClient(x5);
 	// 
 	//testing split and reading from client database.
-	cout << Parser::split(Parser::getClientByID(1))[3];
+	//cout << Parser::split(Parser::getClientByID(1))[3];
 
 	//testing reading from a file
 	//string line = "1#Micheal#Ab12345678#5000.000000";
