@@ -11,8 +11,8 @@ protected:
 	int id = 0;
 public:
 	//Constructor
-	Person(string name, string password, int id)
-		: name(Validation::validName(name)), password(Validation::validPassword(password)), id(id)
+	Person(string name, string password)
+		: name(Validation::validName(name)), password(Validation::validPassword(password))
 	{}
 	//Getters
 	 string getName()

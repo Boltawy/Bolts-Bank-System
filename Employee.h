@@ -9,12 +9,16 @@ class Employee : public Person
 {
 protected:
 	double salary = 0;
+	static int numberOfEmployees;
 public:
 	//Constructors
-	Employee(string name, string password, int id, double salary)
-		: Person(Validation::validName(name), Validation::validPassword(password), id),
+	Employee(string name, string password, double salary)
+		: Person(Validation::validName(name), Validation::validPassword(password)),
 		salary(Validation::validSalary(salary))
-	{}
+	{
+		numberOfEmployees++;
+		this->id = numberOfEmployees;
+	}
 
 	//Getters
 	double getSalary()

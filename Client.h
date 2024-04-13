@@ -6,13 +6,17 @@ class Client : public Person
 {
 private:
 	double balance = 0;
+	static int numberOfClients;
 public:
 	//Constructors
-	Client(string name, string password, int id, double balance)
+	Client(string name, string password, double balance)
 		: Person(Validation::validName(name),
-			Validation::validPassword(password), id),
+			Validation::validPassword(password)),
 		balance(Validation::validBalance(balance))
-	{}
+	{
+		numberOfClients++;
+		this->id = numberOfClients;
+	}
 
 	//Getters
 	double getBalance()

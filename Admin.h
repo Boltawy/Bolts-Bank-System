@@ -3,11 +3,16 @@
 #include "Validation.h"
 class Admin : public Employee
 {
+private:
+	static int numberOfAdmins;
 public:
 	Admin(string name, string password, int id, double salary)
-		: Employee(Validation::validName(name), Validation::validPassword(password), id,
+		: Employee(Validation::validName(name), Validation::validPassword(password),
 			Validation::validSalary(salary))
-	{}
+	{
+		numberOfAdmins++;
+		this->id = numberOfAdmins;
+	}
 
 	void display()
 	{
@@ -17,4 +22,3 @@ public:
 	}
 
 };
-
