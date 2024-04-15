@@ -21,7 +21,7 @@ public: //should be private
 	}
 
 
-	static string getClientByID(int id) { //from GPT, Probably should be private.
+	static string getClientByID(int id) { //Probably should be private.
 		string line;
 		FileManager::clientFile.open("Client_Database.txt", ios::in);
 		while (getline(FileManager::clientFile, line)) {
