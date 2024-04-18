@@ -9,15 +9,39 @@ class Employee : public Person
 {
 protected:
 	double salary = 0;
-	static int numberOfEmployees;
+
+	int getLastID()
+	{
+		fstream employeeFile;
+		employeeFile.open("Employee_Database.txt", ios::in);
+		if (employeeFile.is_open())
+		{
+			string line;
+			string lastLine;
+			while (getline(employeeFile, line))
+			{
+				if (line != "")
+				{
+					lastLine = line;
+				}
+			}
+			if (lastLine != "")
+			{
+				int lastID = stoi(lastLine.substr(0, lastLine.find('#')));
+				employeeFile.close();
+				return lastID;
+			}
+		}
+		employeeFile.close();
+		return 0;
+	}
 public:
 	//Constructors
 	Employee(string name, string password, double salary)
 		: Person(Validation::validName(name), Validation::validPassword(password)),
 		salary(Validation::validSalary(salary))
 	{
-		numberOfEmployees++;
-		this->id = numberOfEmployees;
+		id = getLastID() + 1;
 	}
 
 	//Getters
@@ -43,13 +67,13 @@ public:
 	{
 		if (isValidClient(obj))
 		{
-			fstream clientFile;
-			clientFile.open("Client_Database.txt", ios::app);
-			if (clientFile.is_open())
+			fstream employeeFile;
+			employeeFile.open("Client_Database.txt", ios::app);
+			if (employeeFile.is_open())
 			{
-				clientFile << to_string(obj.getID()) + '#' + obj.getName() + '#' + obj.getPassword() + '#' + to_string(obj.getBalance()) << endl;
+				employeeFile << to_string(obj.getID()) + '#' + obj.getName() + '#' + obj.getPassword() + '#' + to_string(obj.getBalance()) << endl;
 			}
-			clientFile.close();
+			employeeFile.close();
 		}
 		else
 		{
