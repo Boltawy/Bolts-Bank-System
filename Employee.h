@@ -2,6 +2,7 @@
 #include <fstream>
 #include "Person.h"
 #include "Client.h"
+//#include "Parser.h" //Circular dependancy.
 #include "Validation.h"
 
 
@@ -12,13 +13,13 @@ protected:
 
 	int getLastID()
 	{
-		fstream employeeFile;
-		employeeFile.open("Employee_Database.txt", ios::in);
-		if (employeeFile.is_open())
+		fstream clientFile;
+		clientFile.open("client_Database.txt", ios::in);
+		if (clientFile.is_open())
 		{
 			string line;
 			string lastLine;
-			while (getline(employeeFile, line))
+			while (getline(clientFile, line))
 			{
 				if (line != "")
 				{
@@ -28,11 +29,11 @@ protected:
 			if (lastLine != "")
 			{
 				int lastID = stoi(lastLine.substr(0, lastLine.find('#')));
-				employeeFile.close();
+				clientFile.close();
 				return lastID;
 			}
 		}
-		employeeFile.close();
+		clientFile.close();
 		return 0;
 	}
 public:
@@ -65,27 +66,42 @@ public:
 	//Database Access Methods
 	void display()
 	{
-		cout << "Employee Name: " << name << endl
-			<< "Employee ID: " << id << endl
-			<< "Employee Salary: " << salary << endl;
+		cout << "client Name: " << name << endl
+			<< "client ID: " << id << endl
+			<< "client Salary: " << salary << endl;
 	}
 	void addClient(Client obj)
 	{
 		if (isValidClient(obj))
 		{
-			fstream employeeFile;
-			employeeFile.open("Client_Database.txt", ios::app);
-			if (employeeFile.is_open())
+			fstream clientFile;
+			clientFile.open("Client_Database.txt", ios::app);
+			if (clientFile.is_open())
 			{
-				employeeFile << to_string(obj.getID()) + '#' + obj.getName() + '#' + obj.getPassword() + '#' + to_string(obj.getBalance()) << endl;
+				clientFile << to_string(obj.getID()) + '#' + obj.getName() + '#' + obj.getPassword() + '#' + to_string(obj.getBalance()) << endl;
 			}
-			employeeFile.close();
+			clientFile.close();
 		}
 		else
 		{
 			cout << "Client has invalid Properties.\n";
 		}
 	}
+
+	//Client getClientByID(int id) { //Needs work to fix circular dependancies.
+	//	fstream clientFile;
+	//	string line;
+	//	clientFile.open("Client_Database.txt", ios::in);
+	//	while (getline(clientFile, line)) { //read every line and assigns it in line string.
+	//		int lineId = stoi(line.substr(0, line.find('#'))); //stores the id in a new variable.
+	//		if (lineId == id) { //if found.
+	//			clientFile.close();
+	//			Parser::parseToClient(Parser::split(line));
+	//		}
+	//	}
+	//	clientFile.close();
+	//	return; //what should I return if id i am looking for is not found ? throw exception ?
+	//}
 
 private:
 	//Validation for objects before adding them to database.
