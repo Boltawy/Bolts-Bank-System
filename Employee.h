@@ -63,6 +63,12 @@ public:
 	}
 	
 	//Database Access Methods
+	void display()
+	{
+		cout << "Employee Name: " << name << endl
+			<< "Employee ID: " << id << endl
+			<< "Employee Salary: " << salary << endl;
+	}
 	void addClient(Client obj)
 	{
 		if (isValidClient(obj))
@@ -81,12 +87,6 @@ public:
 		}
 	}
 
-	void display()
-	{
-		cout << "Employee Name: " << name << endl
-			<< "Employee ID: " << id << endl
-			<< "Employee Salary: " << salary << endl;
-	}
 private:
 	//Validation for objects before adding them to database.
 	  bool isValidClient(Client& obj)
