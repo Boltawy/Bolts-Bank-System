@@ -24,8 +24,8 @@ public: //should be private
 	static string getClientByID(int id) { //Probably should be private.
 		string line;
 		FileManager::clientFile.open("Client_Database.txt", ios::in);
-		while (getline(FileManager::clientFile, line)) {
-			int lineId = stoi(line.substr(0, line.find('#')));
+		while (getline(FileManager::clientFile, line)) { //read every line and assigns it in line string.
+			int lineId = stoi(line.substr(0, line.find('#'))); //stores the id in a new variable.
 			if (lineId == id) {
 				FileManager::clientFile.close();
 				return line;
