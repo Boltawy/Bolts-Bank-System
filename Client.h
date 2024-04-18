@@ -1,4 +1,6 @@
 #pragma once
+#include <fstream>
+#include "string"
 #include "Person.h"
 #include "Validation.h"
 
@@ -6,16 +8,41 @@ class Client : public Person
 {
 private:
 	double balance = 0;
-	static int numberOfClients;
+	
+	 int getLastID() //should be private
+	{
+		fstream clientFile;
+		clientFile.open("Client_Database.txt", ios::in);
+		if (clientFile.is_open())
+		{
+			string line;
+			string lastLine;
+			while (getline(clientFile, line))
+			{
+				if (line != "")
+				{
+				lastLine = line;
+				}
+			} 
+			if (lastLine != "")
+			{
+				int lastID = stoi(lastLine.substr(0, lastLine.find('#')));
+				clientFile.close();
+				return lastID;
+			}
+		}
+		clientFile.close();
+		return 0;
+	}
 public:
+
 	//Constructors
 	Client(string name, string password, double balance)
 		: Person(Validation::validName(name),
 			Validation::validPassword(password)),
 		balance(Validation::validBalance(balance))
 	{
-		numberOfClients++;
-		this->id = numberOfClients;
+		id = getLastID() + 1;
 	}
 
 	//Getters
