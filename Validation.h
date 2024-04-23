@@ -66,38 +66,38 @@ public:
 	}
 
 	//Validation for the Constructor (Creates an Object with Invalid Properties if the parameters are invalid)
-	static string validName(const string& _name)
+static string validName(const string& _name)
+{
+	if (isValidName(_name))
 	{
-		if (isValidName(_name))
-		{
-			return _name;
-		}
-		return "Invalid Name";
+	return _name;
 	}
-	static string validPassword(const string& _password)
+	return "Invalid Name";
+}
+static string validPassword(const string& _password)
+{
+	if (isValidPassword(_password))
 	{
-		if (isValidPassword(_password))
-		{
-			return _password;
-		}
-		return "Invalid Password";
-	}
-	static double validBalance(const double& _balance)
+		return _password;
+	}	
+	return "Invalid Password";
+}
+static double validBalance(const double& _balance)
+{
+	if (isValidBalance(_balance))
 	{
-		if (isValidBalance(_balance))
-		{
-			return _balance;
-		}
-		return -1;
+		return _balance;
 	}
-	static double validSalary(const double& _salary)
+	return -1;
+}
+static double validSalary(const double& _salary)
+{
+	if (isValidSalary(_salary))
 	{
-		if (isValidSalary(_salary))
-		{
-			return _salary;
-		}
-		return -1;
+		return _salary;
 	}
+	return -1;
+}
 
 
 private:
@@ -110,6 +110,18 @@ private:
 				return false;
 			}
 		}
-		return true;
+			return true;
 	}
 };
+
+
+
+// I dunno why the below code dosen't work.
+	//static bool isValidPassword(const string& password)
+	//{
+	//	if (password.length() >= 8 && password.length() <= 20)
+	//	{
+	//		return true;
+	//	}
+	//	return false;
+	//}

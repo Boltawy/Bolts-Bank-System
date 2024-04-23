@@ -1,4 +1,6 @@
 #pragma once
+#include <fstream>
+#include "string"
 #include "Person.h"
 #include "Validation.h"
 
@@ -6,13 +8,42 @@ class Client : public Person
 {
 private:
 	double balance = 0;
+	
+	 int getLastID() //should be private
+	{
+		fstream clientFile;
+		clientFile.open("Client_Database.txt", ios::in);
+		if (clientFile.is_open())
+		{
+			string line;
+			string lastLine;
+			while (getline(clientFile, line))
+			{
+				if (line != "")
+				{
+				lastLine = line;
+				}
+			} 
+			if (lastLine != "")
+			{
+				int lastID = stoi(lastLine.substr(0, lastLine.find('#')));
+				clientFile.close();
+				return lastID;
+			}
+		}
+		clientFile.close();
+		return 0;
+	}
 public:
+
 	//Constructors
-	Client(string name, string password, int id, double balance)
+	Client(string name, string password, double balance)
 		: Person(Validation::validName(name),
-			Validation::validPassword(password), id),
+			Validation::validPassword(password)),
 		balance(Validation::validBalance(balance))
-	{}
+	{
+		id = getLastID() + 1;
+	}
 
 	//Getters
 	double getBalance()
@@ -28,7 +59,7 @@ public:
 		}
 		else
 		{
-			cout << "Invalid Balance.";
+			cout << "Invalid Balance.\n";
 		}
 	}
 
@@ -41,18 +72,18 @@ public:
 		}
 		else
 		{
-			cout << "Can't deposit a negative number";
+			cout << "Can't deposit a negative number\n";
 		}
 	}
 	void withdraw(double amount)
 	{
 		if (amount < 0)
 		{
-			cout << "Can't withdraw a negative number";
+			cout << "Can't withdraw a negative number\n";
 		}
 		else if (balance < amount)
 		{
-			cout << "Not enough balance";
+			cout << "Not enough balance\n";
 		}
 		else
 		{
@@ -68,12 +99,12 @@ public:
 		}
 		else
 		{
-			cout << "Invalid Balance in either account.";
+			cout << "Invalid Balance in either account.\n";
 		}
 	}
 	void checkBalance()
 	{
-		cout << "Balance is: " << balance;
+		cout << "Balance is: " << balance << endl;
 	}
 	void display()
 	{
