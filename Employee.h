@@ -13,28 +13,12 @@ protected:
 
 	int getLastID()
 	{
-		fstream clientFile;
-		clientFile.open("client_Database.txt", ios::in);
-		if (clientFile.is_open())
+		vector<Employee>::iterator it;
+		for (it = allEmployees.begin(); it != allEmployees.end(); it++)
 		{
-			string line;
-			string lastLine;
-			while (getline(clientFile, line))
-			{
-				if (line != "")
-				{
-					lastLine = line;
-				}
-			}
-			if (lastLine != "")
-			{
-				int lastID = stoi(lastLine.substr(0, lastLine.find('#')));
-				clientFile.close();
-				return lastID;
-			}
 		}
-		clientFile.close();
-		return 0;
+		Employee x = *it;
+		return x.getID();
 	}
 public:
 	static vector<Employee> allEmployees;

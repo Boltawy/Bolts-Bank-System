@@ -1,24 +1,23 @@
 #include <iostream>
 #include "Client.h"
 #include "Admin.h"
+#include "FilesHelper.h"
 #include "FileManager.h"
 #include "Parser.h"
 using namespace std;
 
 int main()
 {
-	//testing client ID generation
 	Employee z("Franklin", "87654321", 100000);
-	Client x("Micheal", "Ab12345678", 5000);
-	z.addClient(x);
-	Client x2("Micheal Schwartz", "Ab12345678", 5000);
-	z.addClient(x2);
-	Client x3("Micheal Schwartz", "Ab12345678", 5000);
-	z.addClient(x3);
-	Client x4("Micheal Schwartz", "Ab12345678", 5000);
-	z.addClient(x4);
-	Client x5("Micheal Schwartz", "Ab12345678", 5000);
-	z.addClient(x5);
+	z.addClient(Client("Micheal", "Ab12345678", 5000));
+	z.addClient(Client("Micheal Schwartz", "Ab12345678", 5000));
+	z.addClient(Client( "Micheal Schwartz", "Ab12345678", 5000));
+	z.addClient(Client("Micheal Schwartz", "Ab12345678", 5000));
+	z.addClient(Client("Micheal Schwartz", "Ab12345678", 5000));
+	//FilesHelper::getAllClients();
+	//testing client ID generation
+
+
 
 
 	// 

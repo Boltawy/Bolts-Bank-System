@@ -10,30 +10,13 @@ class Client : public Person
 private:
 	double balance = 0;
 	
-	 int getLastID() //should be private
+	 int getLastID()
 	{
-		fstream clientFile;
-		clientFile.open("Client_Database.txt", ios::in);
-		if (clientFile.is_open())
-		{
-			string line;
-			string lastLine;
-			while (getline(clientFile, line))
-			{
-				if (line != "")
-				{
-				lastLine = line;
-				}
-			} 
-			if (lastLine != "")
-			{
-				int lastID = stoi(lastLine.substr(0, lastLine.find('#')));
-				clientFile.close();
-				return lastID;
-			}
-		}
-		clientFile.close();
-		return 0;
+		 vector<Client>::iterator it;
+		 for (it = allClients.begin(); it != allClients.end(); it++)
+		 {}
+		 Client x = *it;
+		 return x.getID();
 	}
 public:
 	static vector<Client> allClients;

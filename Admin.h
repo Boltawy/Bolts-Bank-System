@@ -4,34 +4,18 @@
 class Admin : public Employee
 {
 private:
-	static int numberOfAdmins;
 	int getLastID()
 	{
-		fstream adminFile;
-		adminFile.open("Admin_Database.txt", ios::in);
-		if (adminFile.is_open())
+		vector<Admin>::iterator it;
+		for (it = allAdmins.begin(); it != allAdmins.end(); it++)
 		{
-			string line;
-			string lastLine;
-			while (getline(adminFile, line))
-			{
-				if (line != "")
-				{
-					lastLine = line;
-				}
-			}
-			if (lastLine != "")
-			{
-				int lastID = stoi(lastLine.substr(0, lastLine.find('#')));
-				adminFile.close();
-				return lastID;
-			}
 		}
-		adminFile.close();
-		return 0;
+		Admin x = *it;
+		return x.getID();
 	}
 public:
-	Admin(string name, string password, int id, double salary)
+	static vector<Admin> allAdmins;
+	Admin(string name, string password, double salary)
 		: Employee(Validation::validName(name), Validation::validPassword(password),
 			Validation::validSalary(salary))
 	{

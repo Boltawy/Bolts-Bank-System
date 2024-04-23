@@ -7,7 +7,7 @@
 using namespace std;
 class Parser
 {
-public:
+private:
 	static vector<string> split(string line)
 	{
 			vector<string> parsedData = {};
@@ -19,10 +19,27 @@ public:
 		}
 			return parsedData;
 	}
-	static Client parseToClient(vector<string> parsedData)
+public:
+	static Client parseToClient(string line)
 	{
+		vector<string> parsedData = split(line);
 		Client x = Client(parsedData[1], parsedData[2], stod(parsedData[3]));
 		x.setID(stoi(parsedData[0]));
+		return x;
+	}
+	static Employee parseToEmployee(string line)
+	{
+		vector<string> parsedData = split(line);
+		Employee x = Employee(parsedData[1], parsedData[2], stod(parsedData[3]));
+		x.setID(stoi(parsedData[0]));
+		return x;
+	}
+	static Admin parseToAdmin(string line)
+	{
+		vector<string> parsedData = split(line);
+		Admin x = Admin(parsedData[1], parsedData[2], stod(parsedData[3]));
+		x.setID(stoi(parsedData[0]));
+		return x;
 	}
 
 
