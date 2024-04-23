@@ -37,6 +37,7 @@ protected:
 		return 0;
 	}
 public:
+	static vector<Employee> allEmployees;
 	//Constructors
 	Employee(string name, string password, double salary)
 		: Person(Validation::validName(name), Validation::validPassword(password)),
@@ -63,31 +64,62 @@ public:
 		}
 	}
 	
-	//Database Access Methods
 	void display()
 	{
-		cout << "client Name: " << name << endl
-			<< "client ID: " << id << endl
-			<< "client Salary: " << salary << endl;
+		cout << "Employee Name: " << name << endl
+			<< "Employee ID: " << id << endl
+			<< "Employee Salary: " << salary << endl;
 	}
 	void addClient(Client obj)
 	{
 		if (isValidClient(obj))
 		{
-			fstream clientFile;
-			clientFile.open("Client_Database.txt", ios::app);
-			if (clientFile.is_open())
-			{
-				clientFile << to_string(obj.getID()) + '#' + obj.getName() + '#' + obj.getPassword() + '#' + to_string(obj.getBalance()) << endl;
-			}
-			clientFile.close();
+			Client::allClients.push_back(obj);
 		}
 		else
 		{
 			cout << "Client has invalid Properties.\n";
 		}
 	}
+	Client* searchClient(int id) {
 
+		Client* c;
+
+		for (int i = 0; i < Client::allClients.size(); i++) {
+
+			if (Client::allClients[i].getID() == id) {
+
+				c = &Client::allClients[i];
+			}
+			else
+			{
+				c->setID(-1);
+			}
+		}
+	}
+	void listClient() {
+
+		for (int i = 0; i < Client::allClients.size(); i++) {
+
+			Client::allClients[i].display();
+		}
+	}
+
+	void editClient(int id, string name, string password, double balance) {
+
+		Client* c;
+		c = searchClient(id);
+		if (c->getID() != -1) {
+
+			c->setName(name);
+			c->setPassword(password);
+			c->setBalance(balance);
+		}
+		else {
+
+			cout << "Client ID Not Found!" << endl;
+		}
+	}
 	//Client getClientByID(int id) { //Needs work to fix circular dependancies.
 	//	fstream clientFile;
 	//	string line;

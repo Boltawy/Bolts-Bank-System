@@ -1,5 +1,6 @@
 #pragma once
 #include <fstream>
+#include<vector>
 #include "string"
 #include "Person.h"
 #include "Validation.h"
@@ -35,6 +36,7 @@ private:
 		return 0;
 	}
 public:
+	static vector<Client> allClients;
 
 	//Constructors
 	Client(string name, string password, double balance)
