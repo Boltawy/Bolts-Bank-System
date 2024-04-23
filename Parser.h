@@ -41,38 +41,5 @@ public:
 		x.setID(stoi(parsedData[0]));
 		return x;
 	}
-
-
-
-	//static string getEmployeeByID(int id) { //Probably should be private.
-	//	string line;
-	//	employeeFile.open("Employee_Database.txt", ios::in);
-	//	while (getline(employeeFile, line)) { //read every line and assigns it in line string.
-	//		int lineId = stoi(line.substr(0, line.find('#'))); //stores the id in a new variable.
-	//		if (lineId == id) {
-	//			employeeFile.close();
-	//			return line;
-	//		}
-	//	}
-	//	employeeFile.close();
-	//	return "";
-	//}
-
-	//static string getAdminByID(int id) { //Probably should be private.
-	//	string line;
-	//	adminFile.open("Admin_Database.txt", ios::in);
-	//	while (getline(adminFile, line)) { //read every line and assigns it in line string.
-	//		int lineId = stoi(line.substr(0, line.find('#'))); //stores the id in a new variable.
-	//		if (lineId == id) {
-	//			adminFile.close();
-	//			return line;
-	//		}
-	//	}
-	//	adminFile.close();
-	//	return "";
-	//}
-
-
-public:
 };
 
