@@ -9,7 +9,7 @@ using namespace std;
 int main()
 {
 	Employee z("Franklin", "87654321", 100000);
-	z.addClient(Client("Micheal De Santa", "Ab12345678", 5000));
+	z.addClient(Client("Micheal De Santa", "s", 5000));
 	z.addClient(Client("Franklin Clinton", "Ab12345678", 5000));
 	z.addClient(Client( "Trevor Philips", "Ab12345678", 5000));
 	z.addClient(Client("Carl Johnson", "Ab12345678", 5000));

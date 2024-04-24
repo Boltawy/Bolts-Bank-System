@@ -22,7 +22,7 @@ public:
 		}
 		else
 		{
-			cout << "Client has invalid Properties.";
+			cout << "Client has invalid Properties.\n";
 		}
 	}
 
@@ -40,7 +40,7 @@ public:
 		}
 		else
 		{
-			cout << "Employee has invalid Properties.";
+			cout << "Employee has invalid Properties.\n";
 		}
 	}
 
@@ -58,7 +58,7 @@ public:
 		}
 		else
 		{
-			cout << "Admin has invalid Properties.";
+			cout << "Admin has invalid Properties.\n";
 		}
 	}
 

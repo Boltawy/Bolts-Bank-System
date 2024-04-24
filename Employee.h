@@ -71,7 +71,7 @@ public:
 		}
 		else
 		{
-			cout << "Client has invalid Properties.\n";
+			cout << "Client has invalid Properties.\n\n";
 		}
 	}
 	Client* searchClient(int id) {
