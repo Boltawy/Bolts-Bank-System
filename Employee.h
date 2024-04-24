@@ -114,23 +114,8 @@ public:
 			cout << "Client ID Not Found!" << endl;
 		}
 	}
-	//Client getClientByID(int id) { //Needs work to fix circular dependancies.
-	//	fstream clientFile;
-	//	string line;
-	//	clientFile.open("Client_Database.txt", ios::in);
-	//	while (getline(clientFile, line)) { //read every line and assigns it in line string.
-	//		int lineId = stoi(line.substr(0, line.find('#'))); //stores the id in a new variable.
-	//		if (lineId == id) { //if found.
-	//			clientFile.close();
-	//			Parser::parseToClient(Parser::split(line));
-	//		}
-	//	}
-	//	clientFile.close();
-	//	return; //what should I return if id i am looking for is not found ? throw exception ?
-	//}
-
 private:
-	//Validation for objects before adding them to database.
+	//Validation for objects before adding them to vector.
 	  bool isValidClient(Client& obj)
 	{
 		if (
