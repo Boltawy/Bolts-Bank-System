@@ -9,11 +9,12 @@ using namespace std;
 int main()
 {
 	Employee z("Franklin", "87654321", 100000);
-	z.addClient(Client("Micheal", "Ab12345678", 5000));
-	z.addClient(Client("Micheal Schwartz", "Ab12345678", 5000));
-	z.addClient(Client( "Micheal Schwartz", "Ab12345678", 5000));
-	z.addClient(Client("Micheal Schwartz", "Ab12345678", 5000));
-	z.addClient(Client("Micheal Schwartz", "Ab12345678", 5000));
+	z.addClient(Client("Micheal De Santa", "Ab12345678", 5000));
+	z.addClient(Client("Franklin Clinton", "Ab12345678", 5000));
+	z.addClient(Client( "Trevor Philips", "Ab12345678", 5000));
+	z.addClient(Client("Carl Johnson", "Ab12345678", 5000));
+	z.addClient(Client("Tommy Vercetti", "Ab12345678", 5000));
+	z.listClient();
 	//FilesHelper::getAllClients();
 	//testing client ID generation
 

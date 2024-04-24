@@ -105,6 +105,7 @@ public:
 	{
 		cout << "Client Name: " << name << endl
 			<< "Client ID: " << id << endl
-			<< "Client Balance: " << balance << endl;
+			<< "Client Balance: " << balance << endl
+			<< "\n ================================== \n\n";
 	}
 };
