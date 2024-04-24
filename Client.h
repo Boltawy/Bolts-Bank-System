@@ -12,11 +12,21 @@ private:
 	
 	 int getLastID()
 	{
-		 vector<Client>::iterator it;
-		 for (it = allClients.begin(); it != allClients.end(); it++)
-		 {}
+		 if (allClients.empty())
+		 {
+			 return 0;
+		 }
+		 else
+		 {
+
+		 vector<Client>::iterator it = allClients.begin();
+		 while (it != allClients.end() - 1)
+		 {
+			 it++;
+		 }
 		 Client x = *it;
 		 return x.getID();
+		 }
 	}
 public:
 	static vector<Client> allClients;

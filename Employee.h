@@ -13,12 +13,21 @@ protected:
 
 	int getLastID()
 	{
-		vector<Employee>::iterator it;
-		for (it = allEmployees.begin(); it != allEmployees.end(); it++)
+		if (allEmployees.empty())
 		{
+			return 0;
 		}
+		else
+		{
+		vector<Employee>::iterator it = allEmployees.begin();
+		while ( it != allEmployees.end() - 1)
+		{
+			it++;
+		}
+		
 		Employee x = *it;
 		return x.getID();
+		}
 	}
 public:
 	static vector<Employee> allEmployees;
@@ -67,17 +76,19 @@ public:
 	}
 	Client* searchClient(int id) {
 
-		Client* c;
+		Client* c = nullptr;
 
 		for (int i = 0; i < Client::allClients.size(); i++) {
 
 			if (Client::allClients[i].getID() == id) {
 
 				c = &Client::allClients[i];
+				return c;
 			}
 			else
 			{
 				c->setID(-1);
+				return c;
 			}
 		}
 	}
