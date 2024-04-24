@@ -69,7 +69,10 @@ public:
 		clientFile.open("Client_Database.txt", ios::in);
 		while (getline(clientFile, line))
 		{
+			if (line != "")
+			{
 			Client::allClients.push_back(Parser::parseToClient(line));
+			}
 		}
 	}
 	static void getAllEmployees()
@@ -79,7 +82,10 @@ public:
 		employeeFile.open("Employee_Database.txt", ios::in);
 		while (getline(employeeFile, line)) 
 		{
+			if (line != "")
+			{
 			Employee::allEmployees.push_back(Parser::parseToEmployee(line));
+			}
 		}
 	}
 	static void getAllAdmins()
@@ -89,7 +95,10 @@ public:
 		adminFile.open("Admin_Database.txt", ios::in);
 		while (getline(adminFile, line))
 		{
+			if (line != "")
+			{
 			Admin::allAdmins.push_back(Parser::parseToAdmin(line));
+			}
 		}
 	}
 

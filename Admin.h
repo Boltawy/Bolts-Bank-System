@@ -1,17 +1,26 @@
 #pragma once
 #include "Employee.h"
 #include "Validation.h"
+
 class Admin : public Employee
 {
 private:
 	int getLastID()
 	{
-		vector<Admin>::iterator it;
-		for (it = allAdmins.begin(); it != allAdmins.end(); it++)
+		if (allAdmins.empty())
 		{
+			return 0;
 		}
-		Admin x = *it;
-		return x.getID();
+		else
+		{
+			vector<Admin>::iterator it = allAdmins.begin();
+			while (it != allAdmins.end() - 1)
+			{
+				it++;
+			}
+			Admin x = *it;
+			return x.getID();
+		}
 	}
 public:
 	static vector<Admin> allAdmins;

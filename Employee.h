@@ -19,14 +19,13 @@ protected:
 		}
 		else
 		{
-		vector<Employee>::iterator it = allEmployees.begin();
-		while ( it != allEmployees.end() - 1)
-		{
-			it++;
-		}
-		
-		Employee x = *it;
-		return x.getID();
+			vector<Employee>::iterator it = allEmployees.begin();
+			while ( it != allEmployees.end() - 1)
+			{
+				it++;
+			}
+			Employee x = *it;
+			return x.getID();
 		}
 	}
 public:
