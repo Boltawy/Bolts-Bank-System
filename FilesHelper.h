@@ -115,7 +115,29 @@ public:
 	}
 
 	//Display all Databases
-	static void displayAllData();
+	static void displayAllData()
+	{
+		cout << "----------------------------------\nClient Data:\n----------------------------------\n \n";
+		for (int i = 0; i < Client::allClients.size(); i++) {
+
+			Client::allClients[i].display();
+		}
+		cout << endl;
+
+		cout << "----------------------------------\nEmployee Data : \n----------------------------------\n \n";
+		for (int i = 0; i < Employee::allEmployees.size(); i++) {
+
+			Employee::allEmployees[i].display();
+		}
+		cout << endl;
+
+		cout << "----------------------------------\nAdmin Data:\n----------------------------------\n \n";
+		for (int i = 0; i < Admin::allAdmins.size(); i++) {
+
+			Admin::allAdmins[i].display();
+		}
+		cout << endl;
+	}
 };
 
 
