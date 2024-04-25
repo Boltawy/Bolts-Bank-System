@@ -2,7 +2,6 @@
 #include "Client.h"
 #include "Admin.h"
 #include "FilesHelper.h"
-#include "FileManager.h"
 #include "Parser.h"
 using namespace std;
 

@@ -7,7 +7,7 @@
 #include <fstream>
 #include <string>
 
-class FileManager
+class FileManager // ------------------> This class is Deprecated.
 {
 //public:
 	//static fstream clientFile;
