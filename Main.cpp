@@ -12,19 +12,18 @@ int main()
 	FilesHelper::getAllClients();
 	FilesHelper::getAllEmployees();
 	FilesHelper::getAllAdmins();
-	FilesHelper::displayAllData();
+	//FilesHelper::displayAllData();
 
-	//Admin bigboss = Admin::allAdmins[0];
-	//bigboss.display();
+	Admin bigBoss = Admin::allAdmins[0];
+	
 	//bigBoss.addEmployee(Employee("Kratos", "Employee123", 10000));
 
-	//z.addClient(Client("Micheal De Santa", "s", 5000));
-	//z.addClient(Client("Franklin Clinton", "Ab12345678", 5000));
-	//z.addClient(Client( "Trevor Philips", "Ab12345678", 5000));
-	//z.addClient(Client("Carl Johnson", "Ab12345678", 5000));
-	//z.addClient(Client("Tommy Vercetti", "Ab12345678", 5000));
-	//z.listClient();
-	//Employee::allEmployees[1].listClients();
+	//Employee::allEmployees[0].addClient(Client("Micheal De Santa", "Ab123456", 5000));
+	//Employee::allEmployees[0].addClient(Client("Franklin Clinton", "Ab12345678", 5000));
+	//Employee::allEmployees[0].addClient(Client( "Trevor Philips", "Ab12345678", 5000));
+	//Employee::allEmployees[0].addClient(Client("Carl Johnson", "Ab12345678", 5000));
+	//Employee::allEmployees[0].addClient(Client("Tommy Vercetti", "Ab12345678", 5000));
+	//Employee::allEmployees[0].listClients();
 
 	
 
