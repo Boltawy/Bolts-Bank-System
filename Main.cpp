@@ -12,15 +12,22 @@ int main()
 	FilesHelper::getAllClients();
 	FilesHelper::getAllEmployees();
 	FilesHelper::getAllAdmins();
+	//FilesHelper::addAdminToDatabase(bigBoss);
 
-	Employee z("Franklin", "87654321", 100000);
+	Admin bigboss = Admin::allAdmins[0];
+	bigboss.display();
+	//bigBoss.addEmployee(Employee("Kratos", "Employee123", 10000));
+
 	//z.addClient(Client("Micheal De Santa", "s", 5000));
 	//z.addClient(Client("Franklin Clinton", "Ab12345678", 5000));
 	//z.addClient(Client( "Trevor Philips", "Ab12345678", 5000));
 	//z.addClient(Client("Carl Johnson", "Ab12345678", 5000));
 	//z.addClient(Client("Tommy Vercetti", "Ab12345678", 5000));
-	z.listClient();
+	//z.listClient();
+	//Employee::allEmployees[1].listClients();
+
 	
+
 
 	//Update Databases on close.
 	FilesHelper::updateClientFile();
