@@ -77,21 +77,17 @@ public:
 
 		Client* c = nullptr;
 
-		for (int i = 0; i < Client::allClients.size(); i++) {
-
-			if (Client::allClients[i].getID() == id) {
-
+		for (int i = 0; i < Client::allClients.size(); i++) 
+		{
+			if (Client::allClients[i].getID() == id) 
+			{
 				c = &Client::allClients[i];
 				return c;
 			}
-			else
-			{
-				//c->setID(-1);
-				return nullptr;
-			}
 		}
+		return nullptr;
 	}
-	void listClient() {
+	void listClients() {
 
 		for (int i = 0; i < Client::allClients.size(); i++) {
 
@@ -101,9 +97,8 @@ public:
 
 	void editClient(int id, string name, string password, double balance) {
 
-		Client* c;
-		c = searchClient(id);
-		if (c->getID() != -1) {
+		Client* c = searchClient(id);
+		if (c != nullptr) {
 
 			c->setName(name);
 			c->setPassword(password);
