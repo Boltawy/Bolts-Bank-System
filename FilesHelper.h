@@ -113,6 +113,9 @@ public:
 		}
 		adminFile.close();
 	}
+
+	//Display all Databases
+	static void displayAllData();
 };
 
 
