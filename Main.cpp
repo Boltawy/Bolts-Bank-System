@@ -13,7 +13,6 @@ int main()
 	FilesHelper::getAllEmployees();
 	FilesHelper::getAllAdmins();
 	FilesHelper::displayAllData();
-	//FilesHelper::addAdminToDatabase(bigBoss);
 
 	//Admin bigboss = Admin::allAdmins[0];
 	//bigboss.display();

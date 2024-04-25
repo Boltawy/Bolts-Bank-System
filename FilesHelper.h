@@ -114,6 +114,26 @@ public:
 		adminFile.close();
 	}
 
+	//Remove Database
+	static void removeAllClients()
+	{
+		fstream clientFile;
+		clientFile.open("Client_Database.txt", ios::out);
+		clientFile.close();
+	}
+	static void removeAllEmployees()
+	{
+		fstream employeeFile;
+		employeeFile.open("Employee_Database.txt", ios::out);
+		employeeFile.close();
+	}
+	static void removeAllAdmins()
+	{
+		fstream adminFile;
+		adminFile.open("Admin_Database.txt", ios::out);
+		adminFile.close();
+	}
+
 	//Display all Databases
 	static void displayAllData()
 	{
