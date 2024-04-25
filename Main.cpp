@@ -12,10 +12,11 @@ int main()
 	FilesHelper::getAllClients();
 	FilesHelper::getAllEmployees();
 	FilesHelper::getAllAdmins();
+	FilesHelper::displayAllData();
 	//FilesHelper::addAdminToDatabase(bigBoss);
 
-	Admin bigboss = Admin::allAdmins[0];
-	bigboss.display();
+	//Admin bigboss = Admin::allAdmins[0];
+	//bigboss.display();
 	//bigBoss.addEmployee(Employee("Kratos", "Employee123", 10000));
 
 	//z.addClient(Client("Micheal De Santa", "s", 5000));

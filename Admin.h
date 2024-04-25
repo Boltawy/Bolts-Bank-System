@@ -35,7 +35,8 @@ public:
 	{
 		cout << "Admin Name: " << name << endl
 			<< "Admin ID: " << id << endl
-			<< "Admin Salary: " << salary << endl;
+			<< "Admin Salary: " << salary << endl
+			<< "\n ================================== \n\n";
 	}
 
 

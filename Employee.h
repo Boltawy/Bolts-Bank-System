@@ -60,7 +60,8 @@ public:
 	{
 		cout << "Employee Name: " << name << endl
 			<< "Employee ID: " << id << endl
-			<< "Employee Salary: " << salary << endl;
+			<< "Employee Salary: " << salary << endl
+			<< "\n ================================== \n\n";
 	}
 	void addClient(Client obj)
 	{
