@@ -73,7 +73,7 @@ public:
 			cout << "Client has invalid Properties.\n\n";
 		}
 	}
-	Client* searchClient(int id) {
+	Client* searchClient(int id) { //We return a pointer, not an object, so that we can return NULL if not found.
 
 		Client* c = nullptr;
 
@@ -86,8 +86,8 @@ public:
 			}
 			else
 			{
-				c->setID(-1);
-				return c;
+				//c->setID(-1);
+				return nullptr;
 			}
 		}
 	}

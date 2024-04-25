@@ -6,9 +6,8 @@
 #include "parser.h"
 class FilesHelper
 {
-
 public:
-	static void addClient(Client obj)
+	static void addClientToDatabase(Client obj)
 	{
 		if (isValidClient(obj))
 		{
@@ -26,7 +25,7 @@ public:
 		}
 	}
 
-	static void addEmployee(Employee& obj)
+	static void addEmployeeToDatabase(Employee& obj)
 	{
 		if (isValidEmployee(obj))
 		{
@@ -44,7 +43,7 @@ public:
 		}
 	}
 
-	static void addAdmin(Admin& obj)
+	static void addAdminToDatabase(Admin& obj)
 	{
 		if (isValidAdmin(obj))
 		{
@@ -61,7 +60,8 @@ public:
 			cout << "Admin has invalid Properties.\n";
 		}
 	}
-
+	
+	//Load from Database
 	static void getAllClients()
 	{
 		fstream clientFile;
@@ -102,6 +102,40 @@ public:
 		}
 	}
 
+	//Update Database
+	static void updateClientFile()
+	{
+		fstream clientFile;
+		clientFile.open("Client_Database.txt", ios::out); //Empties old database
+
+		for (int i = 0; i < Client::allClients.size(); i++) //Updates Database from Vector
+		{
+			addClientToDatabase(Client::allClients[i]);
+		}
+		clientFile.close();
+	}
+	static void updateEmployeeFile()
+	{
+		fstream employeeFile;
+		employeeFile.open("Employee_Database.txt", ios::out); //Empties old database
+
+		for (int i = 0; i < Employee::allEmployees.size(); i++) //Updates Database from Vector
+		{
+			addEmployeeToDatabase(Employee::allEmployees[i]);
+		}
+		employeeFile.close();
+	}
+	static void updateAdminFile()
+	{
+		fstream adminFile;
+		adminFile.open("Admin_Database.txt", ios::out); //Empties old database
+
+		for (int i = 0; i < Admin::allAdmins.size(); i++) //Updates Database from Vector
+		{
+			addAdminToDatabase(Admin::allAdmins[i]);
+		}
+		adminFile.close();
+	}
 private:
 	//Validation
 	static bool isValidClient(Client& obj)
