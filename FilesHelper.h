@@ -7,7 +7,7 @@
 class FilesHelper
 {
 private:
-	static void addClientToDatabase(Client obj)
+	static void addClientToDatabase(Client& obj)
 	{
 			fstream clientFile;
 			clientFile.open("Client_Database.txt", ios::app);
@@ -17,7 +17,6 @@ private:
 			}
 			clientFile.close();
 	}
-
 	static void addEmployeeToDatabase(Employee& obj)
 	{
 			fstream employeeFile;
@@ -28,7 +27,6 @@ private:
 			}
 			employeeFile.close();
 	}
-
 	static void addAdminToDatabase(Admin& obj)
 	{
 			fstream adminFile;
