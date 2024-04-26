@@ -3,19 +3,20 @@
 #include "Admin.h"
 #include "FilesHelper.h"
 #include "Parser.h"
+#include "Screens.h"
 using namespace std;
 
 int main()
 {
-	//Load Databases on open.
-	FilesHelper::getAllClients();
-	FilesHelper::getAllEmployees();
-	FilesHelper::getAllAdmins();
-	//FilesHelper::displayAllData();
-
-	Admin bigBoss = Admin::allAdmins[0];
+	Screens::runApp()
+}
 	
-	//bigBoss.addEmployee(Employee("Kratos", "Employee123", 10000));
+
+
+
+
+
+//bigBoss.addEmployee(Employee("Kratos", "Employee123", 10000));
 
 	//Employee::allEmployees[0].addClient(Client("Micheal De Santa", "Ab123456", 5000));
 	//Employee::allEmployees[0].addClient(Client("Franklin Clinton", "Ab12345678", 5000));
@@ -25,10 +26,3 @@ int main()
 	//Employee::allEmployees[0].listClients();
 
 	
-
-
-	//Update Databases on close.
-	FilesHelper::updateClientFile();
-	FilesHelper::updateEmployeeFile();
-	FilesHelper::updateAdminFile();
-}
