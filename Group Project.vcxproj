@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="ClientManager.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="FilesHelper.cpp" />
@@ -140,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Client.h" />
+    <ClInclude Include="ClientManager.h" />
     <ClInclude Include="DataSourceInterface.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="FileManager.h" />
