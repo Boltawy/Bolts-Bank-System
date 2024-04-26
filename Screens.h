@@ -132,7 +132,6 @@ public:
 		 case 2:
 			 cout << "Invalid Name or Password, Please try again.\n";
 			 system("pause");
-			 loginScreen();
 			 return;
 		 default:
 			 break;
