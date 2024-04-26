@@ -1,9 +1,16 @@
 #pragma once
+#include <conio.h>
 #include "FilesHelper.h"
 #include "ClientManager.h"
 //#include "EmployeeManager.h"
 //#include "AdminManager.h"
 using namespace std;
+
+#define KEY_Q 113
+#define KEY_1 49
+#define KEY_2 50
+#define KEY_3 51
+#define KEY_DELETE 127 
 
 #pragma comment(lib, "winmm.lib")
 
@@ -44,36 +51,33 @@ public:
 	}
 	 void static loginScreen()
 	 {
-		 int prompt = -1;
-		 while (prompt != 0)
+		 while (true)
 		 {
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		 system("CLS");
-		 cout << "Welcome, What would you like to login as ?\n"
-			 << "\t 1.Client"
-			 << "\t 2.Employee"
-			 << "\t 3.Admin"
-			 << "\t 0.Terminate Program\n";
-		 cin >> prompt;
-		 switch (prompt)
-		 {
-		 case 1:
-			 loginAsClient();
-			 break;
-		 case 2:
-			 loginAsEmployee();
-			 break;
-		 case 3:
-			 loginAsAdmin();
-			 break;
-		 case 0:
-			 closeScreen();
-			 break;
-			 return;
-		 default:
-			 invalid(1);
-			 break;
-		 }
+			 PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			 system("CLS");
+			 cout << "Welcome, What would you like to login as ?\n"
+				 << "\t 1.Client"
+				 << "\t 2.Employee"
+				 << "\t 3.Admin"
+				 << "\t Q.Terminate Program\n";
+			 char key = _getch();
+			 switch (key)
+			 {
+			 case KEY_Q:
+				 exitScreen();
+				 return;
+			 case KEY_1:
+				 loginAsClient();
+				 break;
+			 case KEY_2:
+				 loginAsEmployee();
+				 break;
+			 case KEY_3:
+				 loginAsAdmin();
+				 break;
+			 default:
+				 break;
+			 }
 		 }
 	 }
 	 void static loginAsClient()
@@ -81,14 +85,8 @@ public:
 		 PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		 string name, password;
 
-		 cout << "Please Enter your name(or type return to go back): ";
+		 cout << "Please Enter your name: ";
 		 getline(cin, name);
-		 getline(cin, name);
-		 if (name == "return")
-		 {
-			 loginScreen();
-			 return;
-		 }
 		 cout << "Please Enter your Password: ";
 		 getline(cin, password);
 		 Client* c = ClientManager::ClientLogin(name);
@@ -140,7 +138,7 @@ public:
 			 break;
 		 }
 	 }
-	 static void closeScreen()
+	 static void exitScreen()
 	 {
 		 PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		 system("CLS");
