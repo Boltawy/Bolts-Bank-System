@@ -135,6 +135,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Screens.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="Parser.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Screens.h" />
     <ClInclude Include="Validation.h" />
   </ItemGroup>
   <ItemGroup>
