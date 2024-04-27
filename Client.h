@@ -59,42 +59,36 @@ public:
 	}
 
 	//Other Methods
-	void deposit(double amount)
+	bool deposit(double amount)
 	{
+		bool flag = false;
 		if (amount >= 0)
 		{
 			balance += amount;
-		}
-		else
-		{
-			cout << "Can't deposit a negative number\n";
+			flag = true;
 		}
 	}
-	void withdraw(double amount)
+	bool withdraw(double amount)
 	{
-		if (amount < 0)
+		bool flag = false;
+		if (amount < 0 || balance < amount)
 		{
-			cout << "Can't withdraw a negative number\n";
-		}
-		else if (balance < amount)
-		{
-			cout << "Not enough balance\n";
+			return;
 		}
 		else
 		{
 			balance -= amount;
+			flag = true;
 		}
 	}
-	void transferTo(double amount, Client& recipient)
+	bool transferTo(double amount, Client& recipient)
 	{
-		if (recipient.balance != -1 && this->balance != -1)
+		bool flag = false;
+		if (this->withdraw(amount) && recipient.deposit(amount))
 		{
 			this->withdraw(amount);
 			recipient.deposit(amount);
-		}
-		else
-		{
-			cout << "Invalid Balance in either account.\n";
+			flag = true;
 		}
 	}
 	void checkBalance()
