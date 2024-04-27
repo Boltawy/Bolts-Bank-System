@@ -42,9 +42,10 @@ public:
 
 		while (true)
 		{
-			system("CLS");
 			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("Color 0A");
 			cout << "Hello " << e->getName() << ", my worker, How much work will you get done today ? \n"
 				<< "Salary: " << e->getSalary() << "$\n"
 				<< "1. Add a Client.\n"

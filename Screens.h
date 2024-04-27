@@ -20,7 +20,8 @@ public:
 
 	void static welcomeScreen()
 	{
-		PlaySound(TEXT("main.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		system("Color 0E");
+		//PlaySound(TEXT("main.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		void frame1();
 		{
 			system("CLS");
@@ -121,6 +122,7 @@ public:
 		{
 			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			system("CLS");
+			system("Color 0E");
 			cout << "Welcome, What would you like to login as ?\n"
 				<< "\t 1.Client"
 				<< "\t 2.Employee"
