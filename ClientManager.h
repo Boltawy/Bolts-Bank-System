@@ -43,9 +43,9 @@ public:
 		{
 		system("CLS");
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		//PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		cout << "Hello dear " << c->getName() << ", How can we serve your pocket today ? \n"
-			<< "Your Balance is: " << c->getBalance() << endl
+			<< "Your Balance is: " << c->getBalance() << "$\n"
 			<< "1. Deposit.\n"
 			<< "2. Withdraw.\n"
 			<< "3. Transfer To.\n"

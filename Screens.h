@@ -44,7 +44,7 @@ public:
 			<< "    *=========================================================================================================*\n"
 			<< "                            $$|| Our MOTTO: Give us your money, And Never see it again.||$$                   \n"
 			<< "                              -========================================================-                       \n";
-		//PlaySound(TEXT("main.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("main.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("pause");
 		
 	}
