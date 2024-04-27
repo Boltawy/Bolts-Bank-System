@@ -1,5 +1,4 @@
 #pragma once
-#include <conio.h>
 #include "FilesHelper.h"
 #include "ClientManager.h"
 //#include "EmployeeManager.h"
@@ -45,7 +44,7 @@ public:
 			<< "    *=========================================================================================================*\n"
 			<< "                            $$|| Our MOTTO: Give us your money, And Never see it again.||$$                   \n"
 			<< "                              -========================================================-                       \n";
-		PlaySound(TEXT("main.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("main.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("pause");
 		
 	}
@@ -89,20 +88,28 @@ public:
 		 getline(cin, name);
 		 cout << "Please Enter your Password: ";
 		 getline(cin, password);
-		 Client* c = ClientManager::ClientLogin(name);
+		 Client* c = ClientManager::clientFind(name);
 		
-		 if (c == NULL)
+		 if (c == NULL) //if not found.
 		 {
 			 invalid(2);
 			 return;
 		 }
-		 else if (c != NULL)
+		 else if (c != NULL) //if found.
 		 {
-		 PlaySound(TEXT("login2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			 if (c->getName() == name && c->getPassword() == password)//if correct name & password.
+			 {
+			 PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			 system("CLS");
 			 cout << "Login Successful! \n";
-			 system("pause");
+			 Sleep(1000);
 			 ClientManager::clientMenu(c);
+			 }
+			 else
+			 {
+				 invalid(2);
+				 return;
+			 }
 		 }
 
 	 }
@@ -131,7 +138,7 @@ public:
 				 return;
 		 case 2:
 			 cout << "Invalid Name or Password, Please try again.\n";
-			 system("pause");
+			 Sleep(1000);
 			 return;
 		 default:
 			 break;
@@ -146,8 +153,8 @@ public:
 			system("pause");
 			 return;
 	 }
-	static void runApp()
-	{
+	 static void runApp()
+	 {
 		//Load Databases on open.
 		FilesHelper::getAllClients();
 		FilesHelper::getAllEmployees();
@@ -160,6 +167,6 @@ public:
 		FilesHelper::updateClientFile();
 		FilesHelper::updateEmployeeFile();
 		FilesHelper::updateAdminFile();
-	}
+	 }
 };
 

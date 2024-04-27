@@ -61,35 +61,34 @@ public:
 	//Other Methods
 	bool deposit(double amount)
 	{
-		bool flag = false;
 		if (amount >= 0)
 		{
 			balance += amount;
-			flag = true;
+			return true;
 		}
+		return false;
+
 	}
 	bool withdraw(double amount)
 	{
 		bool flag = false;
 		if (amount < 0 || balance < amount)
 		{
-			return;
+			return false;
 		}
 		else
 		{
 			balance -= amount;
-			flag = true;
+			return true;
 		}
 	}
 	bool transferTo(double amount, Client& recipient)
 	{
-		bool flag = false;
 		if (this->withdraw(amount) && recipient.deposit(amount))
 		{
-			this->withdraw(amount);
-			recipient.deposit(amount);
-			flag = true;
+			return true;
 		}
+		return false;
 	}
 	void checkBalance()
 	{
