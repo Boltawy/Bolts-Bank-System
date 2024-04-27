@@ -8,6 +8,7 @@
 #define KEY_1 49
 #define KEY_2 50
 #define KEY_3 51
+#define KEY_4 52
 #define KEY_DELETE 127 
 
 #pragma comment(lib, "winmm.lib")
@@ -30,11 +31,13 @@ public:
 			}
 			return nullptr;
 	}
-	static void clientMenu(Client* c)
+	static void clientMenu(Client* c) // Too bloated, Needs refactoring.
 	{
 		double amount = 0;
 		string recepient;
 		Client* rec;
+		string currentPassword;
+		string newPassword;
 		
 		while (true)
 		{
@@ -46,6 +49,7 @@ public:
 			<< "1. Deposit.\n"
 			<< "2. Withdraw.\n"
 			<< "3. Transfer To.\n"
+			<< "4. Update Password.\n"
 			<< "Q. Logout.\n";
 		char key = _getch();
 		switch (key)
@@ -86,7 +90,7 @@ public:
 				system("pause");
 			}
 			break;
-		case KEY_3:
+		case KEY_3: //_-----------------------------> Not working yet.
 			cout << "Who would you like to transfer to ?: \n";
 			cin >> recepient;
 			rec = clientFind(recepient);
@@ -116,6 +120,36 @@ public:
 					cout << "Transfer Failed, Mhmmmm?\n";
 					system("pause");
 				}
+			}
+			break;
+		case KEY_4:
+			cout << "Confirm your password: ";
+			cin >> currentPassword;
+			if (c->getPassword() == currentPassword)
+			{
+				cout << "Enter your new password: ";
+				cin >> newPassword;
+				if (c->setPassword(newPassword))
+				{
+					PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
+					system("CLS");
+					cout << "Password Change Accepted.\n";
+					system("pause");
+				}
+				else
+				{
+					PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+					system("CLS");
+					cout << "Password Invalid.\n";
+					system("pause");
+				}
+			}
+			else
+			{
+				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+				system("CLS");
+				cout << "Invalid Password.\n";
+				system("pause");
 			}
 			break;
 		case KEY_Q:

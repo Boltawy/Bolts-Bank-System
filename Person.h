@@ -40,15 +40,16 @@ public:
 			cout << "Invalid Name.";
 		}
 	}
-	void setPassword(string _password)
+	bool setPassword(string _password)
 	{
 		if (Validation::isValidPassword(_password))
 		{
 			this->password = _password;
+			return true;
 		}
 		else
 		{
-			cout << "Invalid Password.";
+			return false;
 		}
 	}
 	void setID(int id)
