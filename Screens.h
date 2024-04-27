@@ -1,7 +1,7 @@
 #pragma once
 #include "FilesHelper.h"
 #include "ClientManager.h"
-//#include "EmployeeManager.h"
+#include "EmployeeManager.h"
 //#include "AdminManager.h"
 using namespace std;
 
@@ -183,8 +183,37 @@ public:
 	void static loginAsEmployee()
 	{
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		string ID;
+		string password;
 
-		cout << "Please Enter your name;";
+		cout << "Please Enter your ID: ";
+		getline(cin, ID);
+		cout << "Please Enter your Password: ";
+		getline(cin, password);
+		Employee* e = EmployeeManager::EmployeeFind(ID);
+
+		if (e == NULL) //if not found.
+		{
+			//invalid(2);
+			cout << "ID not found";
+			return;
+		}
+		else if (e != NULL) //if found.
+		{
+			if (e->getID() == stoi(ID) && e->getPassword() == password)//if correct ID & password.
+			{
+				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
+				system("CLS");
+				cout << "Login Successful! \n";
+				Sleep(1000);
+				EmployeeManager::employeeMenu(e);
+			}
+			else
+			{
+				invalid(2);
+				return;
+			}
+		}
 	}
 	void static loginAsAdmin()
 	{

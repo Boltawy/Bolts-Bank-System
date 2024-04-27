@@ -45,7 +45,8 @@ public:
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		cout << "Hello dear " << c->getName() << ", How can we serve your pocket today ? \n"
-			<< "Your Balance is: " << c->getBalance() << "$\n"
+			<< "Balance: " << c->getBalance() << "$\n"
+			<< "ID: " << c->getID() << "\n\n"
 			<< "1. Deposit.\n"
 			<< "2. Withdraw.\n"
 			<< "3. Transfer To.\n"
@@ -156,11 +157,6 @@ public:
 			return;
 		}
 		}
-	}
-	static void clientLogout()
-	{
-		//Screens::loginScreen;
-		return;
 	}
 
 };
