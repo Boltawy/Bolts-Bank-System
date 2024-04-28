@@ -21,7 +21,7 @@ public:
 	void static welcomeScreen()
 	{
 		system("Color 0E");
-		PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		void frame1();
 		{
 			system("CLS");
@@ -49,7 +49,7 @@ public:
 				<< "    *=========================================================================================================*\n"
 				<< "                                                                                                               \n"
 				<< "                                                                                                               \n";
-			Sleep(4500);
+			//Sleep(4500);
 		}
 		while (!_kbhit())
 		{
@@ -116,18 +116,49 @@ public:
 		system("pause");
 
 	}
+
+
+	//login
+	void static printLoginMenu()
+	{
+		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		system("CLS");
+		system("Color 0E");
+		cout << "\n      ========================================================================================================= \n"
+			<< "     |                                   _    _      _                                                         |\n"
+			<< "     |                                  | |  | |    | |                                                        |\n"
+			<< "     |                                  | |  | | ___| | ___ ___  _ __ ___   ___                                |\n"
+			<< "     |                                  | |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\                               |\n"
+			<< "     |                                  \\  /\\  /  __/ | (_| (_) | | | | | |  __/                               |\n"
+			<< "     |                                   \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|                               |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     |                                      What would you like to login as ?                                  |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     |                                      1.Client.                                                          |\n"
+			<< "     |                                      2.Employee.                                                        |\n"
+			<< "     |                                      3.Admin.                                                           |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     |                                      Q.Terminate Program.                                               |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     |                                                                                                         |\n"
+			<< "     *=========================================================================================================*\n"
+			<< "                                                                                                               \n"
+			<< "                                                                                                               \n";
+	}
+
 	void static loginScreen()
 	{
 		while (true)
 		{
-			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-			system("CLS");
-			system("Color 0E");
-			cout << "Welcome, What would you like to login as ?\n"
-				<< "\t 1.Client"
-				<< "\t 2.Employee"
-				<< "\t 3.Admin"
-				<< "\t Q.Terminate Program\n";
+			
+
+			printLoginMenu();
+
+
 			char key = _getch();
 			switch (key)
 			{
@@ -148,6 +179,7 @@ public:
 			}
 		}
 	}
+
 	void static loginAsClient()
 	{
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -174,6 +206,7 @@ public:
 			{
 				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");
+				system("Color 0A");
 				cout << "Login Successful! \n";
 				Sleep(1000);
 				ClientManager::clientMenu(c);
@@ -217,6 +250,7 @@ public:
 			{
 				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");
+				system("Color 0A");
 				cout << "Login Successful! \n";
 				Sleep(1000);
 				EmployeeManager::employeeMenu(e);

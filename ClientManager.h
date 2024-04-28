@@ -31,8 +31,11 @@ public:
 			}
 			return nullptr;
 	}
+
+
 	static void clientMenu(Client* c) // Too bloated, Needs refactoring.
 	{
+
 		double amount = 0;
 		string recepient;
 		Client* rec;
@@ -42,6 +45,7 @@ public:
 		while (true)
 		{
 		system("CLS");
+		system("Color 0E");
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		cout << "Hello dear " << c->getName() << ", How can we serve your pocket today ? \n"
