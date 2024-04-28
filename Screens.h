@@ -21,7 +21,7 @@ public:
 	void static welcomeScreen()
 	{
 		system("Color 0E");
-		//PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		void frame1();
 		{
 			system("CLS");
@@ -161,7 +161,11 @@ public:
 
 		if (c == NULL) //if not found.
 		{
-			invalid(2);
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "Invalid Name, Please try again.\n";
+			Sleep(1000);
 			return;
 		}
 		else if (c != NULL) //if found.
@@ -176,7 +180,11 @@ public:
 			}
 			else
 			{
-				invalid(2);
+				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+				system("CLS");
+				system("color 04");
+				cout << "Invalid Password, Please try again.\n";
+				Sleep(1000);
 				return;
 			}
 		}
@@ -196,8 +204,11 @@ public:
 
 		if (e == NULL) //if not found.
 		{
-			//invalid(2);
-			cout << "ID not found";
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "ID not found, Please try again.";
+			Sleep(1000);
 			return;
 		}
 		else if (e != NULL) //if found.
@@ -212,7 +223,11 @@ public:
 			}
 			else
 			{
-				invalid(2);
+				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+				system("CLS");
+				system("color 04");
+				cout << "Invalid Password, Please try again.\n";
+				Sleep(1000);
 				return;
 			}
 		}
@@ -223,25 +238,8 @@ public:
 
 		cout << "Please Enter your name;";
 	}
-	static void invalid(int cause)
-	{
-		PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		system("CLS");
-		switch (cause)
-		{
-		case 1:
-			cout << "Invalid Input, Please try again.\n";
-			system("pause");
-			loginScreen();
-			return;
-		case 2:
-			cout << "Invalid Name or Password, Please try again.\n";
-			Sleep(1000);
-			return;
-		default:
-			break;
-		}
-	}
+
+
 	static void exitScreen()
 	{
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
