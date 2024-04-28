@@ -32,8 +32,36 @@ public:
 			return nullptr;
 	}
 
+	static void printClientMenu(Client* c)
+	{
+		system("CLS");
+		system("Color 0E");
+		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
-	static void clientMenu(Client* c) // Too bloated, Needs refactoring.
+		cout << "\t\t\t\t\t   _____  _     _____ _____ _   _ _____           \n"
+			<< "\t\t\t\t\t  /  __ \\| |   |_   _|  ___| \\ | |_   _|         \n"
+			<< "\t\t\t\t\t  | /  \\/| |     | | | |__ |  \\| | | |           \n"
+			<< "\t\t\t\t\t  | |    | |     | | |  __|| . ` | | |           \n"
+			<< "\t\t\t\t\t  | \\__/\\| |_____| |_| |___| |\\  | | |           \n"
+			<< "\t\t\t\t\t   \\____/\\_____/\\___/\\____/\\_| \\_/ \\_/           \n"
+			<< "\t\t\t\t\t =======================================\n\n\n";
+
+
+
+
+
+		cout << "\t\t\t  Hello dear " << c->getName() << ", How can we serve your pocket today ? \n"
+			<< "\t\t\t\t\t\t  Balance: " << c->getBalance() << "$\n"
+			<< "\t\t\t\t\t\t  ID: " << c->getID() << "\n\n"
+			<< "\t\t\t\t1. Deposit.\n"
+			<< "\t\t\t\t2. Withdraw.\n"
+			<< "\t\t\t\t3. Transfer To.\n"
+			<< "\t\t\t\t4. Update Password.\n\n"
+			<< "\t\t\t\t Q. Logout.\n\n";
+	}
+
+	static void clientScreen(Client* c) // Too bloated, Needs refactoring.
 	{
 
 		double amount = 0;
@@ -44,18 +72,8 @@ public:
 		
 		while (true)
 		{
-		system("CLS");
-		system("Color 0E");
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		cout << "Hello dear " << c->getName() << ", How can we serve your pocket today ? \n"
-			<< "Balance: " << c->getBalance() << "$\n"
-			<< "ID: " << c->getID() << "\n\n"
-			<< "1. Deposit.\n"
-			<< "2. Withdraw.\n"
-			<< "3. Transfer To.\n"
-			<< "4. Update Password.\n"
-			<< "Q. Logout.\n";
+		printClientMenu(c);
+
 		char key = _getch();
 		switch (key)
 		{

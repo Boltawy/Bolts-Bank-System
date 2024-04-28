@@ -208,7 +208,7 @@ public:
 				system("Color 0A");
 				cout << "Login Successful! \n";
 				Sleep(1000);
-				ClientManager::clientMenu(c);
+				ClientManager::clientScreen(c);
 			}
 			else
 			{
