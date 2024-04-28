@@ -275,8 +275,9 @@ public:
 
 	static void exitScreen()
 	{
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("exit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
+
 		cout << "Thanks for Choosing Bolt's Bank System.\n"
 			<< "Come with more money next time!\n";
 		system("pause");
