@@ -41,13 +41,21 @@ public:
 		PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
 		system("Color 0A");
-		cout << "Hello " << e->getName() << ", my worker, How much work will you get done today ? \n"
-			<< "Salary: " << e->getSalary() << "$\n"
-			<< "1. Add a Client.\n"
-			<< "2. List all Clients.\n"
-			<< "3. Edit Client.\n"
-			<< "4. Update Password.\n"
-			<< "Q. Logout.\n";
+		cout << "                                      ________  _________ _     _______   _______ _____ \n"
+			<< "                                     |  ___|  \\/  || ___ \\ |   |  _  \\ \\ / /  ___|  ___|\n"
+			<< "                                     | |__ | .  . || |_/ / |   | | | |\\ V /| |__ | |__\n"
+			<< "                                     |  __|| |\\/| ||  __/| |   | | | | \\ / |  __||  __|\n"
+			<< "                                     | |___| |  | || |   | |___\\ \\_/ / | | | |___| |___\n"
+			<< "                                     \\____/\\_|  |_/\\_|   \\_____/\\___/  \\_/ \\____/\\____/\n\n\n";
+
+		cout << "\t\t\t Hello " << e->getName() << ", my worker, How much work will you get done today ? \n"
+			<< "\t\t\t\t\t\t Salary: " << e->getSalary() << "$\n"
+			<< "\t\t\t\t\t\t ID: " << e->getID() << "\n\n"
+			<< "\t\t\t\t 1. Add a Client.\n"
+			<< "\t\t\t\t 2. List all Clients.\n"
+			<< "\t\t\t\t 3. Edit Client.\n"
+			<< "\t\t\t\t 4. Update Password.\n\n"
+			<< "\t\t\t\t Q. Logout.\n";
 	}
 	static void employeeScreen(Employee* e) // Too bloated, Needs refactoring.
 	{
