@@ -1,6 +1,7 @@
 #pragma once
 #include <conio.h>
 #include "Client.h"
+#include "ClientManager.h"
 #include "Employee.h"
 #include <Windows.h>
 #include <mmsystem.h>
@@ -33,37 +34,63 @@ public:
 		return nullptr;
 	}
 
-	static void employeeMenu(Employee* e) // Too bloated, Needs refactoring.
+	//Screen & Menu
+	static void printEmployeeMenu(Employee* e)
+	{
+		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		system("CLS");
+		system("Color 0A");
+		cout << "Hello " << e->getName() << ", my worker, How much work will you get done today ? \n"
+			<< "Salary: " << e->getSalary() << "$\n"
+			<< "1. Add a Client.\n"
+			<< "2. List all Clients.\n"
+			<< "3. Edit Client.\n"
+			<< "4. Update Password.\n"
+			<< "Q. Logout.\n";
+	}
+	static void employeeScreen(Employee* e) // Too bloated, Needs refactoring.
 	{
 		double amount = 0;
-		Client* rec;
+		Client* c;
+		string clientName;
 		string currentPassword;
 		string newPassword;
 
 		while (true)
 		{
-			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-			PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
-			system("CLS");
-			system("Color 0A");
-			cout << "Hello " << e->getName() << ", my worker, How much work will you get done today ? \n"
-				<< "Salary: " << e->getSalary() << "$\n"
-				<< "1. Add a Client.\n"
-				<< "2. List all Clients.\n"
-				<< "3. Edit Client.\n"
-				<< "4. Update Password.\n"
-				<< "Q. Logout.\n";
+			printEmployeeMenu(e);
 			char key = _getch();
 			switch (key)
 			{
 			case KEY_1:
-				
 				break;
 			case KEY_2:
+				system("CLS");
+				cout << "----------------------------------\nClient Data:\n----------------------------------\n \n";
+				for (int i = 0; i < Client::allClients.size(); i++) {
+
+					Client::allClients[i].display();
+				}
+				cout << endl;
+				system("pause");
 				
 				break;
 			case KEY_3: 
+				c = ClientManager::clientFind(clientName);
+				if (c == NULL)
+				{
+					PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+					system("CLS");
+					system("color 04");
+					cout << "Client not found, Please try again.\n";
+					Sleep(1000);
+					return;
+				}
+				else
+				{
 
+				}
 				break;
 			case KEY_4:
 

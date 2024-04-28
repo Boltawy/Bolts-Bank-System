@@ -1,6 +1,5 @@
 #pragma once
 #include "FilesHelper.h"
-#include "ClientManager.h"
 #include "EmployeeManager.h"
 //#include "AdminManager.h"
 using namespace std;
@@ -21,7 +20,7 @@ public:
 	void static welcomeScreen()
 	{
 		system("Color 0E");
-		//PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		void frame1();
 		{
 			system("CLS");
@@ -49,7 +48,7 @@ public:
 				<< "    *=========================================================================================================*\n"
 				<< "                                                                                                               \n"
 				<< "                                                                                                               \n";
-			//Sleep(4500);
+			Sleep(4500);
 		}
 		while (!_kbhit())
 		{
@@ -253,7 +252,7 @@ public:
 				system("Color 0A");
 				cout << "Login Successful! \n";
 				Sleep(1000);
-				EmployeeManager::employeeMenu(e);
+				EmployeeManager::employeeScreen(e);
 			}
 			else
 			{
