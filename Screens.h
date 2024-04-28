@@ -21,7 +21,7 @@ public:
 	void static welcomeScreen()
 	{
 		system("Color 0E");
-		//PlaySound(TEXT("main.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		void frame1();
 		{
 			system("CLS");
@@ -49,7 +49,7 @@ public:
 				<< "    *=========================================================================================================*\n"
 				<< "                                                                                                               \n"
 				<< "                                                                                                               \n";
-			Sleep(1000);
+			Sleep(4500);
 		}
 		while (!_kbhit())
 		{
@@ -80,7 +80,7 @@ public:
 				<< "    *=========================================================================================================*\n"
 				<< "                            $$|| Our MOTTO: Give us your money, And Never see it again.||$$                   \n"
 				<< "                              -========================================================-                       \n";
-			Sleep(1000);
+			Sleep(350);
 		}
 		void frame3();
 		{
@@ -109,11 +109,11 @@ public:
 				<< "    *=========================================================================================================*\n"
 				<< "                            $$|| Our MOTTO: Give us your money, And Never see it again.||$$                   \n"
 				<< "                              -========================================================-                       \n";
-			Sleep(1000);
+			Sleep(550);
 		}
 		}
 
-		//system("pause");
+		system("pause");
 
 	}
 	void static loginScreen()
