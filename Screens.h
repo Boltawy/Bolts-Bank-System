@@ -277,12 +277,23 @@ public:
 
 	static void exitScreen()
 	{
-		PlaySound(TEXT("exit.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
 
-		cout << "Thanks for Choosing Bolt's Bank System.\n"
-			<< "Come with more money next time!\n\n\n";
-		system("pause");
+		cout
+			<< "\n\n\n\t\t\t   ____      U  ___ u    U  ___ u   ____       ____     __   __ U _____ u\n"
+			<< "\t\t\tU / ___|u     \\/ _ \\/     \\/ _ \\/  |  _ \\   U | __ )u   \\ \\ / / \\| ___ |/ \n"
+			<< "\t\t\t\\| |  _ /     | | | |     | | | | /| | | |   \\|  _ \\/    \\ V /   |  _|    \n"
+			<< "\t\t\t | |_| |  .-,_| |_| | .-,_| |_| | U| |_| |\\   | |_) |   U_| |_u  | |___   \n"
+			<< "\t\t\t  \\____|   \\_)-\\___/   \\_)-\\___/   |____/ u   |____/      |_|    |_____|  \n"
+			<< "\t\t\t  _)(|_         \\\\          \\\\      |||_     _|| \\\\_  .-,//|(_   <<   >>  \n"
+			<< "\t\t\t (__)__)       (__)        (__)    (__)_)   (__) (__)  \_) (__) (__) (__) \n\n\n";
+			
+                                                                                                                                      
+                                                                                                                                      
+
+		cout << "\t\t\t\t\t  Thanks for Choosing Bolt's Bank System.\n\n"
+			 << "\t\t\t\t\t  I Hope you Liked my Project!!\n\n\n";
+		PlaySound(TEXT("exit.wav"), NULL, SND_FILENAME | SND_SYNC);
 		return;
 	}
 	static void runApp()
