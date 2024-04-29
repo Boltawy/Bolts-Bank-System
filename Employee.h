@@ -62,18 +62,19 @@ public:
 			<< "Employee Salary: " << salary << endl
 			<< "\n ================================== \n\n";
 	}
-	void addClient(Client obj)
+	static bool addClient(Client obj)
 	{
 		if (isValidClient(obj))
 		{
 			Client::allClients.push_back(obj);
+			return true;
 		}
 		else
 		{
-			cout << "Client has invalid Properties.\n\n";
+			return false;
 		}
 	}
-	Client* searchClient(int id) { //We return a pointer, not an object, so that we can return NULL if not found.
+	static Client* searchClientByID(int id) { //We return a pointer, not an object, so that we can return NULL if not found.
 
 		Client* c = nullptr;
 
@@ -97,7 +98,7 @@ public:
 
 	void editClient(int id, string name, string password, double balance) {
 
-		Client* c = searchClient(id);
+		Client* c = searchClientByID(id);
 		if (c != nullptr) {
 
 			c->setName(name);
@@ -111,7 +112,7 @@ public:
 	}
 private:
 	//Validation for objects before adding them to vector.
-	  bool isValidClient(Client& obj)
+	  static bool isValidClient(Client& obj)
 	{
 		if (
 			Validation::isValidName(obj.getName()) &&

@@ -10,7 +10,7 @@ public:
 	//Validation for Setters (Refuses to work if the input is invalid)
 	static bool isValidName(const string& name)
 	{
-		if ((name.length() >= 5 && name.length() <= 20) && isAlphaOrSpace(name))
+		if ((name.length() >= 4 && name.length() <= 20) && isAlphaOrSpace(name) && name != "Invalid Name")
 		{
 			return true;
 		}

@@ -46,15 +46,16 @@ public:
 		return balance;
 	}
 	//Setters
-	void setBalance(double _balance) 
+	bool setBalance(double _balance) 
 	{
 		if (Validation::isValidBalance(_balance))
 		{
 			this->balance = _balance;
+			return true;
 		}
 		else
 		{
-			cout << "Invalid Balance.\n";
+			return false;
 		}
 	}
 

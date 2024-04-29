@@ -17,7 +17,7 @@
 class ClientManager
 {
 public:
-	static Client* clientFind(string name)
+	static Client* clientFindByName(string name)
 	{
 			Client* c = nullptr;
 
@@ -66,7 +66,7 @@ public:
 
 		double amount = 0;
 		string recepient;
-		Client* rec;
+		Client* rec = NULL;
 		string currentPassword;
 		string newPassword;
 		
@@ -116,7 +116,7 @@ public:
 		case KEY_3: //_-----------------------------> Not working yet.
 			cout << "Who would you like to transfer to ?: \n";
 			cin >> recepient;
-			rec = clientFind(recepient);
+			rec = clientFindByName(recepient);
 			if (rec == nullptr)
 			{
 				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);

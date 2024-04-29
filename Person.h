@@ -29,15 +29,16 @@ public:
 	}
 
 	//Setters 
-	void setName(string _name)
+	bool setName(string _name)
 	{
 		if (Validation::isValidName(_name))
 		{
 			this->name = _name;
+			return true;
 		}
 		else
 		{
-			cout << "Invalid Name.";
+			return false;
 		}
 	}
 	bool setPassword(string _password)

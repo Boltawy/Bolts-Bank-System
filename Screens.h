@@ -77,7 +77,7 @@ public:
 				<< "    |                                                                                                         |\n"
 				<< "    |                                                                             ........Bolt's Bank System  |\n"
 				<< "    *=========================================================================================================*\n"
-				<< "                            $$|| Our MOTTO: Give us your money, And Never see it again.||$$                   \n"
+				<< "                          $$|| Special Thanks to: Eng.Mostafa Madian & Eng.Mohammed Adel ||$$                   \n"
 				<< "                              -========================================================-                       \n";
 			Sleep(350);
 		}
@@ -106,7 +106,7 @@ public:
 				<< "    |                                                                                                         |\n"
 				<< "    |                                                                             ........Bolt's Bank System  |\n"
 				<< "    *=========================================================================================================*\n"
-				<< "                            $$|| Our MOTTO: Give us your money, And Never see it again.||$$                   \n"
+				<< "                          $$|| Special Thanks to: Eng.Mostafa Madian & Eng.Mohammed Adel ||$$                   \n"
 				<< "                              -========================================================-                       \n";
 			Sleep(550);
 		}
@@ -138,7 +138,7 @@ public:
 			<< "     |                                      2.Employee.                                                        |\n"
 			<< "     |                                      3.Admin.                                                           |\n"
 			<< "     |                                                                                                         |\n"
-			<< "     |                                      Q.Terminate Program.                                               |\n"
+			<< "     |                                             Q.Terminate Program.                                        |\n"
 			<< "     |                                                                                                         |\n"
 			<< "     |                                                                                                         |\n"
 			<< "     |                                                                                                         |\n"
@@ -188,7 +188,7 @@ public:
 		getline(cin, name);
 		cout << "Please Enter your Password: ";
 		getline(cin, password);
-		Client* c = ClientManager::clientFind(name);
+		Client* c = ClientManager::clientFindByName(name);
 
 		if (c == NULL) //if not found.
 		{
@@ -225,14 +225,16 @@ public:
 	void static loginAsEmployee()
 	{
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		string ID;
+		int ID;
+		string idStr;
 		string password;
 
 		cout << "Please Enter your ID: ";
-		getline(cin, ID);
+		getline(cin, idStr);
+		stringstream(idStr) >> ID;
 		cout << "Please Enter your Password: ";
 		getline(cin, password);
-		Employee* e = EmployeeManager::EmployeeFind(ID);
+		Employee* e = EmployeeManager::employeeFindByID(ID);
 
 		if (e == NULL) //if not found.
 		{
@@ -245,7 +247,7 @@ public:
 		}
 		else if (e != NULL) //if found.
 		{
-			if (e->getID() == stoi(ID) && e->getPassword() == password)//if correct ID & password.
+			if (e->getID() == ID && e->getPassword() == password)//if correct ID & password.
 			{
 				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");
@@ -279,7 +281,7 @@ public:
 		system("CLS");
 
 		cout << "Thanks for Choosing Bolt's Bank System.\n"
-			<< "Come with more money next time!\n";
+			<< "Come with more money next time!\n\n\n";
 		system("pause");
 		return;
 	}
