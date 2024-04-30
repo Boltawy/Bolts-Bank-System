@@ -39,13 +39,13 @@ public:
 		cout << "\t\t\t Hello Boss " << currentAdmin->getName() << ", How many employees are you willing to fire today ? \n"
 			<< "\t\t\t\t\t\t Salary: " << currentAdmin->getSalary() << "$\n"
 			<< "\t\t\t\t\t\t ID: " << currentAdmin->getID() << "\n\n"
-			<< "\t\t\t\t 1. Add a Client.\n"
-			<< "\t\t\t\t 2. List all Clients.\n"
-			<< "\t\t\t\t 3. Edit a Client.\n\n"
-			<< "\t\t\t\t 4. Update Password.\n\n"
-			<< "\t\t\t\t 5. Add an Employee.\n"
-			<< "\t\t\t\t 6. List all Employees.\n"
-			<< "\t\t\t\t 7. Edit an Employee.\n\n"
+			<< "\t\t\t\t\t1. Add a Client.\n"
+			<< "\t\t\t\t\t2. List all Clients.\n"
+			<< "\t\t\t\t\t3. Edit a Client.\n\n"
+			<< "\t\t\t\t\t4. Update Password.\n\n"
+			<< "\t\t\t\t\t5. Add an Employee.\n"
+			<< "\t\t\t\t\t6. List all Employees.\n"
+			<< "\t\t\t\t\t7. Edit an Employee.\n\n"
 			<< "\t\t\t\t\t\t    Q. Logout.\n\n";
     }
 	static void adminScreen(Admin* currentAdmin)
