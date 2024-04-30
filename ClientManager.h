@@ -70,6 +70,7 @@ public:
 			clientUpdatePassword(currentClient);
 			break;
 		case KEY_Q:
+			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 			return;
 		}
 		}
@@ -198,23 +199,26 @@ public:
 				{
 					PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					system("CLS");
+					system("Color 0A");
 					cout << "Password Change Accepted.\n";
-					system("pause");
+					Sleep(1000);
 				}
 				else
 				{
 					PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					system("CLS");
+					system("color 04");
 					cout << "Password Invalid.\n";
-					system("pause");
+					Sleep(1000);
 				}
 			}
 			else
 			{
 				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");
+				system("color 04");
 				cout << "Invalid Password.\n";
-				system("pause");
+				Sleep(1000);
 			}
 	}
 };

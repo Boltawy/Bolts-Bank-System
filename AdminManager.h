@@ -78,6 +78,7 @@ public:
 			editEmployee();
 			break;
 		case KEY_Q:
+			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 			return;
 		}
 		}

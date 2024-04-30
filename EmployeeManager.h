@@ -66,6 +66,7 @@ public:
 				updatePassword(currentEmployee);
 				break;
 			case KEY_Q:
+				PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 				return;
 			}
 		}
@@ -193,6 +194,7 @@ public:
 			{
 				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");
+				system("Color 0A");
 				cout << "Password Change Accepted.\n";
 				Sleep(1000);
 			}

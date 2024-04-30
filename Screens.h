@@ -112,33 +112,32 @@ public:
 		}
 
 		system("pause");
-
+		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 	}
 
 
 	//login
 	void static printLoginMenu()
 	{
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 		PlaySound(TEXT("welcome.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
 		system("Color 0E");
 		cout << "\n      ========================================================================================================= \n"
-			<< "     |>                                  _    _      _                                                        <|\n"
-			<< "     |>                                 | |  | |    | |                                                       <|\n"
-			<< "     |>                                 | |  | | ___| | ___ ___  _ __ ___   ___                               <|\n"
-			<< "     |>                                 | |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\                              <|\n"
-			<< "     |>                                 \\  /\\  /  __/ | (_| (_) | | | | | |  __/                              <|\n"
-			<< "     |>                                  \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|                              <|\n"
-			<< "     |>                                     =================================                                 <|\n"
+			<< "     |>                                 _    _      _                                                         <|\n"
+			<< "     |>                                | |  | |    | |                                                        <|\n"
+			<< "     |>                                | |  | | ___| | ___ ___  _ __ ___   ___                                <|\n"
+			<< "     |>                                | |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\                               <|\n"
+			<< "     |>                                \\  /\\  /  __/ | (_| (_) | | | | | |  __/                               <|\n"
+			<< "     |>                                 \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|                               <|\n"
+			<< "     |>                                    =================================                                  <|\n"
 			<< "     |>                                                                                                       <|\n"
-			<< "     |>                                     What would you like to login as ?                                 <|\n"
+			<< "     |>                                    What would you like to login as ?                                  <|\n"
 			<< "     |>                                                                                                       <|\n"
-			<< "     |>                                     1.Client.                                                         <|\n"
-			<< "     |>                                     2.Employee.                                                       <|\n"
-			<< "     |>                                     3.Admin.                                                          <|\n"
+			<< "     |>                                    1.Client.                                                          <|\n"
+			<< "     |>                                    2.Employee.                                                        <|\n"
+			<< "     |>                                    3.Admin.                                                           <|\n"
 			<< "     |>                                                                                                       <|\n"
-			<< "     |>                                            Q.Terminate Program.                                       <|\n"
+			<< "     |>                                           Q.Terminate Program.                                        <|\n"
 			<< "     |>                                                                                                       <|\n"
 			<< "     |>                                                                                                       <|\n"
 			<< "     |>                                                                                                       <|\n"
