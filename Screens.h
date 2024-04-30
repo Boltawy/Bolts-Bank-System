@@ -331,7 +331,7 @@ public:
                                                                                                                                       
 
 		cout << "\t\t\t\t\t  Thanks for Choosing Bolt's Bank System.\n\n"
-			 << "\t\t\t\t\t  I Hope you Liked my Project!!\n\n\n";
+			 << "\t\t\t\t\t       I Hope you Liked my Project!!\n\n\n";
 		PlaySound(TEXT("exit.wav"), NULL, SND_FILENAME | SND_SYNC);
 		return;
 	}
