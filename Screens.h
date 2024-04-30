@@ -119,30 +119,31 @@ public:
 	//login
 	void static printLoginMenu()
 	{
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
+		PlaySound(TEXT("welcome.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
 		system("Color 0E");
 		cout << "\n      ========================================================================================================= \n"
-			<< "     |                                   _    _      _                                                         |\n"
-			<< "     |                                  | |  | |    | |                                                        |\n"
-			<< "     |                                  | |  | | ___| | ___ ___  _ __ ___   ___                                |\n"
-			<< "     |                                  | |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\                               |\n"
-			<< "     |                                  \\  /\\  /  __/ | (_| (_) | | | | | |  __/                               |\n"
-			<< "     |                                   \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|                               |\n"
-			<< "     |                                                                                                         |\n"
-			<< "     |                                                                                                         |\n"
-			<< "     |                                      What would you like to login as ?                                  |\n"
-			<< "     |                                                                                                         |\n"
-			<< "     |                                      1.Client.                                                          |\n"
-			<< "     |                                      2.Employee.                                                        |\n"
-			<< "     |                                      3.Admin.                                                           |\n"
-			<< "     |                                                                                                         |\n"
-			<< "     |                                             Q.Terminate Program.                                        |\n"
-			<< "     |                                                                                                         |\n"
-			<< "     |                                                                                                         |\n"
-			<< "     |                                                                                                         |\n"
-			<< "     |                                                                                                         |\n"
-			<< "     |                                                                                                         |\n"
+			<< "     |>                                  _    _      _                                                        <|\n"
+			<< "     |>                                 | |  | |    | |                                                       <|\n"
+			<< "     |>                                 | |  | | ___| | ___ ___  _ __ ___   ___                               <|\n"
+			<< "     |>                                 | |/\\| |/ _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\                              <|\n"
+			<< "     |>                                 \\  /\\  /  __/ | (_| (_) | | | | | |  __/                              <|\n"
+			<< "     |>                                  \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___|                              <|\n"
+			<< "     |>                                                                                                       <|\n"
+			<< "     |>                                                                                                       <|\n"
+			<< "     |>                                     What would you like to login as ?                                 <|\n"
+			<< "     |>                                                                                                       <|\n"
+			<< "     |>                                     1.Client.                                                         <|\n"
+			<< "     |>                                     2.Employee.                                                       <|\n"
+			<< "     |>                                     3.Admin.                                                          <|\n"
+			<< "     |>                                                                                                       <|\n"
+			<< "     |>                                            Q.Terminate Program.                                       <|\n"
+			<< "     |>                                                                                                       <|\n"
+			<< "     |>                                                                                                       <|\n"
+			<< "     |>                                                                                                       <|\n"
+			<< "     |>                                                                                                       <|\n"
+			<< "     |>.......................................................................................................<|\n"
 			<< "     *=========================================================================================================*\n"
 			<< "                                                                                                               \n"
 			<< "                                                                                                               \n";
@@ -180,16 +181,16 @@ public:
 
 	void static loginAsClient()
 	{
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		string name, password;
 
 		cout << "Please Enter your name: ";
 		getline(cin, name);
 		cout << "Please Enter your Password: ";
 		getline(cin, password);
-		Client* c = ClientManager::clientFindByName(name);
+		Client* currentClient = ClientManager::clientFindByName(name);
 
-		if (c == NULL) //if not found.
+		if (currentClient == NULL) //if not found.
 		{
 			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			system("CLS");
@@ -198,16 +199,16 @@ public:
 			Sleep(1000);
 			return;
 		}
-		else if (c != NULL) //if found.
+		else if (currentClient != NULL) //if found.
 		{
-			if (c->getName() == name && c->getPassword() == password)//if correct name & password.
+			if (currentClient->getName() == name && currentClient->getPassword() == password)//if correct name & password.
 			{
 				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");
 				system("Color 0A");
 				cout << "Login Successful! \n";
 				Sleep(1000);
-				ClientManager::clientScreen(c);
+				ClientManager::clientScreen(currentClient);
 			}
 			else
 			{
@@ -223,7 +224,7 @@ public:
 	}
 	void static loginAsEmployee()
 	{
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		int ID;
 		string idStr;
 		string password;
@@ -268,7 +269,7 @@ public:
 	}
 	void static loginAsAdmin()
 	{
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		int ID;
 		string idStr;
 		string password;

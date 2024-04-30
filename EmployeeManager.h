@@ -18,29 +18,13 @@
 class EmployeeManager
 {
 public:
-
-	static Employee* employeeFindByID(int ID)
-	{
-		Employee* c = nullptr;
-
-		for (int i = 0; i < Employee::allEmployees.size(); i++)
-		{
-			if (Employee::allEmployees[i].getID() == ID) //if Employee found
-			{
-				c = &Employee::allEmployees[i];
-				return c;
-			}
-		}
-		return nullptr;
-	}
-
 	//Screen & Menu
-	static void printEmployeeMenu(Employee* e)
+	static void printEmployeeMenu(Employee* currentEmployee)
 	{
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
-		system("Color 03");
+		system("Color 0B");
 		cout << "                                      ________  _________ _     _______   _______ _____ \n"
 			<< "                                     |  ___|  \\/  || ___ \\ |   |  _  \\ \\ / /  ___|  ___|\n"
 			<< "                                     | |__ | .  . || |_/ / |   | | | |\\ V /| |__ | |__\n"
@@ -52,22 +36,20 @@ public:
 
 
 
-		cout << "\t\t\t\tHello " << e->getName() << ", my worker, How much work will you get done today ? \n"
-			<< "\t\t\t\t\t\t\tSalary: " << e->getSalary() << "$\n"
-			<< "\t\t\t\t\t\t\tID: " << e->getID() << "\n\n"
+		cout << "\t\t\t\tHello " << currentEmployee->getName() << ", my worker, How much work will you get done today ? \n"
+			<< "\t\t\t\t\t\t\tSalary: " << currentEmployee->getSalary() << "$\n"
+			<< "\t\t\t\t\t\t\tID: " << currentEmployee->getID() << "\n\n"
 			<< "\t\t\t\t\t1. Add a Client.\n"
 			<< "\t\t\t\t\t2. List all Clients.\n"
 			<< "\t\t\t\t\t3. Edit a Client.\n\n"
 			<< "\t\t\t\t\t4. Update Password.\n\n"
 			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
 	}
-	static void employeeScreen(Employee* e) // Too bloated, Needs refactoring.
+	static void employeeScreen(Employee* currentEmployee)
 	{
-		double amount = 0;
-		Client* c = NULL;
 		while (true)
 		{
-			printEmployeeMenu(e);
+			printEmployeeMenu(currentEmployee);
 			char key = _getch();
 			switch (key)
 			{
@@ -81,12 +63,27 @@ public:
 				editClient();
 				break;
 			case KEY_4:
-				updatePassword(e);
+				updatePassword(currentEmployee);
 				break;
 			case KEY_Q:
 				return;
 			}
 		}
+	}
+
+	//Menu Option Methods.
+	static Employee* employeeFindByID(int ID)
+	{
+		Employee* currentEmployee = nullptr;
+
+		for (int i = 0; i < Employee::allEmployees.size(); i++)
+		{
+			if (Employee::allEmployees[i].getID() == ID) //if Employee found
+			{
+				currentEmployee = &Employee::allEmployees[i];
+			}
+		}
+		return currentEmployee;
 	}
 	static void addClient()
 	{
@@ -182,17 +179,17 @@ public:
 			system("Pause");
 		}
 	}
-	static void updatePassword(Employee* e)
+	static void updatePassword(Employee* currentEmployee)
 	{
 		string currentPassword;
 		string newPassword;
 		cout << "Confirm your password: ";
 		getline(cin, currentPassword);
-		if (e->getPassword() == currentPassword)
+		if (currentEmployee->getPassword() == currentPassword)
 		{
 			cout << "Enter your new password: ";
 			getline(cin, newPassword);
-			if (e->setPassword(newPassword))
+			if (currentEmployee->setPassword(newPassword))
 			{
 				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");

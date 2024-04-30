@@ -2,6 +2,7 @@
 #include <conio.h>
 #include "Client.h"
 #include <Windows.h>
+#include <sstream>
 #include <mmsystem.h>
 
 #define KEY_Q 113
@@ -17,22 +18,8 @@
 class ClientManager
 {
 public:
-	static Client* clientFindByName(string name)
-	{
-			Client* c = nullptr;
-
-			for (int i = 0; i < Client::allClients.size(); i++)
-			{
-				if (Client::allClients[i].getName() == name) //if client found
-				{
-					c = &Client::allClients[i];
-					return c;
-				}
-			}
-			return nullptr;
-	}
-
-	static void printClientMenu(Client* c)
+	//Screen & Menu.
+	static void printClientMenu(Client* currentClient)
 	{
 		system("CLS");
 		system("Color 0E");
@@ -51,9 +38,9 @@ public:
 
 
 
-		cout << "\t\t\t\tHello dear " << c->getName() << ", How can we serve your pocket today ? \n"
-			<< "\t\t\t\t\t\t\tBalance: " << c->getBalance() << "$\n"
-			<< "\t\t\t\t\t\t\tID: " << c->getID() << "\n\n"
+		cout << "\t\t\t\tHello dear " << currentClient->getName() << ", How can we serve your pocket today ? \n"
+			<< "\t\t\t\t\t\t\tBalance: " << currentClient->getBalance() << "$\n"
+			<< "\t\t\t\t\t\t\tID: " << currentClient->getID() << "\n\n"
 			<< "\t\t\t\t1. Deposit.\n"
 			<< "\t\t\t\t2. Withdraw.\n"
 			<< "\t\t\t\t3. Transfer To.\n"
@@ -61,98 +48,153 @@ public:
 			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
 	}
 
-	static void clientScreen(Client* c) // Too bloated, Needs refactoring.
+	static void clientScreen(Client* currentClient)
 	{
-
-		double amount = 0;
-		string recepient;
-		Client* rec = NULL;
-		string currentPassword;
-		string newPassword;
-		
 		while (true)
 		{
-		printClientMenu(c);
+		printClientMenu(currentClient);
 
 		char key = _getch();
 		switch (key)
 		{
 		case KEY_1:
-			cout << "How much would you like to give us ? :D : ";
-			cin >> amount;
-			if (c->deposit(amount))
-			{
-				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
-				system("CLS");
-				cout << "Deposit Successful, Thanks for giving us more money.\n";
-				system("pause");
-			}
-			else
-			{
-				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
-				system("CLS");
-				cout << "Deposit Failed,I said give us, Not take from us!! (Enter a Positive Number)\n";
-				system("pause");
-			}
+			clientDeposit(currentClient);
 			break;
 		case KEY_2:
-			cout << "How much would you like to take from us ? :( : ";
-			cin >> amount;
-			if (c->withdraw(amount))
+			clientWithdraw(currentClient);
+			break;
+		case KEY_3:
+			clientTransferTo(currentClient);
+			break;
+		case KEY_4:
+			clientUpdatePassword(currentClient);
+			break;
+		case KEY_Q:
+			return;
+		}
+		}
+	}
+
+	//Menu Option Methods.
+	static Client* clientFindByName(string name)
+	{
+			Client* currentClient = nullptr;
+
+			for (int i = 0; i < Client::allClients.size(); i++)
+			{
+				if (Client::allClients[i].getName() == name) //if client found
+				{
+					currentClient = &Client::allClients[i];
+				}
+			}
+			return currentClient;
+	}
+	static void clientDeposit(Client* currentClient)
+	{
+		double amount = 0;
+		string amountStr;
+		cout << "How much would you like to give us ? :D : ";
+		getline(cin, amountStr);
+		stringstream(amountStr) >> amount;
+		if (currentClient->deposit(amount))
+		{
+			PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("Color 0A");
+			cout << "Deposit Successful, Thanks for giving us more money.\n";
+			Sleep(1000);
+		}
+		else
+		{
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "Deposit Failed, Ehh.\n";
+			Sleep(1000);
+		}
+	}
+	static void clientWithdraw(Client* currentClient)
+	{
+		double amount = 0;
+		string amountStr;
+		cout << "How much would you like to take from us ? :( : ";
+		getline(cin, amountStr);
+		stringstream(amountStr) >> amount;
+		if (currentClient->withdraw(amount))
+		{
+			PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("Color 0A");
+			cout << "Withdraw Successful, Please don't do that again!\n";
+			Sleep(1000);
+		}
+		else
+		{
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "Withdraw Failed, Phew that was close!\n";
+			Sleep(1000);
+		}
+	}
+	static void clientTransferTo(Client* currentClient)
+	{
+		double amount = 0;
+		string amountStr;
+		string recepientName;
+		cout << "Who would you like to transfer to ?: \n";
+		getline(cin, recepientName);
+		Client* recepient = clientFindByName(recepientName);
+		if (recepient == nullptr)
+		{
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "Client not found, Please try Again.\n";
+			Sleep(1000);
+		}
+		else if (currentClient == recepient)
+		{
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "Can't Transfer to yourself, Buddy.\n";
+			system("pause");
+		}
+		else
+		{
+			cout << "How much would you like to transfer ?: \n";
+			getline(cin, amountStr);
+			stringstream(amountStr) >> amount;
+			if (currentClient->transferTo(amount, *recepient))
 			{
 				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");
-				cout << "Withdraw Successful, Please don't do that again!\n";
-				system("pause");
+				system("Color 0A");
+				cout << "Transfer Complete, Hooray!\n";
+				Sleep(1000);
 			}
 			else
 			{
 				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
 				system("CLS");
-				cout << "Withdraw Failed, Phew that was close!\n";
-				system("pause");
+				system("color 04");
+				cout << "Transfer Failed, Mhmmmm?\n";
+				Sleep(1000);
 			}
-			break;
-		case KEY_3: //_-----------------------------> Not working yet.
-			cout << "Who would you like to transfer to ?: \n";
-			cin >> recepient;
-			rec = clientFindByName(recepient);
-			if (rec == nullptr)
-			{
-				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
-				system("CLS");
-				cout << "Client not found, Please try Again.\n";
-				system("pause");
-				break;
-			}
-			else
-			{
-				cout << "How much would you like to transfer ?: \n";
-				cin >> amount;
-				if (c->transferTo(amount, *rec))
-				{
-					PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
-					system("CLS");
-					cout << "Transfer Complete, Hooray!\n";
-					system("pause");
-				}
-				else
-				{
-					PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
-					system("CLS");
-					cout << "Transfer Failed, Mhmmmm?\n";
-					system("pause");
-				}
-			}
-			break;
-		case KEY_4:
-			cout << "Confirm your password: ";
+		}
+	}
+	static void clientUpdatePassword(Client* currentClient)
+	{
+		string currentPassword;
+		string newPassword;
+		cout << "Confirm your password: ";
 			cin >> currentPassword;
-			if (c->getPassword() == currentPassword)
+			if (currentClient->getPassword() == currentPassword)
 			{
 				cout << "Enter your new password: ";
 				cin >> newPassword;
-				if (c->setPassword(newPassword))
+				if (currentClient->setPassword(newPassword))
 				{
 					PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
 					system("CLS");
@@ -174,12 +216,6 @@ public:
 				cout << "Invalid Password.\n";
 				system("pause");
 			}
-			break;
-		case KEY_Q:
-			return;
-		}
-		}
 	}
-
 };
 

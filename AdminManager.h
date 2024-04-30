@@ -11,22 +11,8 @@ class AdminManager :
     public EmployeeManager
 {
 public:
-	static Admin* adminFindByID(int ID)
-	{
-		Admin* c = nullptr;
-
-		for (int i = 0; i < Admin::allAdmins.size(); i++)
-		{
-			if (Admin::allAdmins[i].getID() == ID) //if Admin found
-			{
-				c = &Admin::allAdmins[i];
-				return c;
-			}
-		}
-		return nullptr;
-	}
-
-    static void printAdminMenu(Admin* a)
+	//Screen & Menu.
+    static void printAdminMenu(Admin* currentAdmin)
     {
         PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
         PlaySound(TEXT("admin.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -50,9 +36,9 @@ public:
 
 
 
-		cout << "\t\t\t Hello Boss " << a->getName() << ", How many employees are you willing to fire today ? \n"
-			<< "\t\t\t\t\t\t Salary: " << a->getSalary() << "$\n"
-			<< "\t\t\t\t\t\t ID: " << a->getID() << "\n\n"
+		cout << "\t\t\t Hello Boss " << currentAdmin->getName() << ", How many employees are you willing to fire today ? \n"
+			<< "\t\t\t\t\t\t Salary: " << currentAdmin->getSalary() << "$\n"
+			<< "\t\t\t\t\t\t ID: " << currentAdmin->getID() << "\n\n"
 			<< "\t\t\t\t 1. Add a Client.\n"
 			<< "\t\t\t\t 2. List all Clients.\n"
 			<< "\t\t\t\t 3. Edit a Client.\n\n"
@@ -62,12 +48,11 @@ public:
 			<< "\t\t\t\t 7. Edit an Employee.\n\n"
 			<< "\t\t\t\t\t\t    Q. Logout.\n\n";
     }
-
-	static void adminScreen(Admin* a)
+	static void adminScreen(Admin* currentAdmin)
 	{
 		while (true)
 		{
-		printAdminMenu(a);
+		printAdminMenu(currentAdmin);
 		char key = _getch();
 		switch (key)
 		{
@@ -81,7 +66,7 @@ public:
 			editClient();
 			break;
 		case KEY_4:
-			updatePassword(a);
+			updatePassword(currentAdmin);
 			break;
 		case KEY_5:
 			addEmployee();
@@ -96,6 +81,21 @@ public:
 			return;
 		}
 		}
+	}
+	
+	//Menu Option Methods.
+	static Admin* adminFindByID(int ID)
+	{
+		Admin* currentAdmin = nullptr;
+
+		for (int i = 0; i < Admin::allAdmins.size(); i++)
+		{
+			if (Admin::allAdmins[i].getID() == ID) //if Admin found
+			{
+				currentAdmin = &Admin::allAdmins[i];
+			}
+		}
+		return currentAdmin;
 	}
 	static void addEmployee()
 	{
@@ -177,7 +177,7 @@ public:
 			{
 				cout << "Invalid Password\n";
 			}
-			cout << "\nEnter New Balance: ";
+			cout << "\nEnter New Salary: ";
 			getline(cin, salaryStr);
 			stringstream(salaryStr) >> newSalary;
 			if (e->setSalary(newSalary))

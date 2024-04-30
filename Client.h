@@ -62,7 +62,7 @@ public:
 	//Other Methods
 	bool deposit(double amount)
 	{
-		if (amount >= 0)
+		if (amount > 0)
 		{
 			balance += amount;
 			return true;
@@ -73,7 +73,7 @@ public:
 	bool withdraw(double amount)
 	{
 		bool flag = false;
-		if (amount < 0 || balance < amount)
+		if (amount <= 0 || balance < amount)
 		{
 			return false;
 		}
