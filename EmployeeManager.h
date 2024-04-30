@@ -12,7 +12,6 @@
 #define KEY_2 50
 #define KEY_3 51
 #define KEY_4 52
-#define KEY_DELETE 127 
 
 #pragma comment(lib, "winmm.lib")
 
@@ -39,7 +38,7 @@ public:
 	static void printEmployeeMenu(Employee* e)
 	{
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		//PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
 		system("Color 03");
 		cout << "                                      ________  _________ _     _______   _______ _____ \n"
@@ -53,14 +52,14 @@ public:
 
 
 
-		cout << "\t\t\t Hello " << e->getName() << ", my worker, How much work will you get done today ? \n"
-			<< "\t\t\t\t\t\t Salary: " << e->getSalary() << "$\n"
-			<< "\t\t\t\t\t\t ID: " << e->getID() << "\n\n"
-			<< "\t\t\t\t 1. Add a Client.\n"
-			<< "\t\t\t\t 2. List all Clients.\n"
-			<< "\t\t\t\t 3. Edit Client.\n"
-			<< "\t\t\t\t 4. Update Password.\n\n"
-			<< "\t\t\t\t  Q. Logout.\n\n";
+		cout << "\t\t\t\tHello " << e->getName() << ", my worker, How much work will you get done today ? \n"
+			<< "\t\t\t\t\t\t\tSalary: " << e->getSalary() << "$\n"
+			<< "\t\t\t\t\t\t\tID: " << e->getID() << "\n\n"
+			<< "\t\t\t\t\t1. Add a Client.\n"
+			<< "\t\t\t\t\t2. List all Clients.\n"
+			<< "\t\t\t\t\t3. Edit a Client.\n\n"
+			<< "\t\t\t\t\t4. Update Password.\n\n"
+			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
 	}
 	static void employeeScreen(Employee* e) // Too bloated, Needs refactoring.
 	{
@@ -95,11 +94,11 @@ public:
 		string password;
 		string balanceStr;
 		double balance;
-		cout << "Enter Client Name: ";
+		cout << "Enter Client's Name: ";
 		getline(cin, name);
-		cout << "Enter Client Password: ";
+		cout << "Enter Client's Password: ";
 		getline(cin, password);
-		cout << "Enter Client Balance: ";
+		cout << "Enter Client's Balance: ";
 		getline(cin, balanceStr);
 		stringstream(balanceStr) >> balance;
 
@@ -133,7 +132,7 @@ public:
 		double newBalance = -1;
 		string balanceStr;
 
-		cout << "Enter Client ID: ";
+		cout << "Enter Client's ID: ";
 		getline(cin, idStr);
 		stringstream(idStr) >> clientID;
 		Client* c = Employee::searchClientByID(clientID);

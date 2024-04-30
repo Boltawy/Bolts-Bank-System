@@ -37,7 +37,7 @@ public:
 		system("CLS");
 		system("Color 0E");
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		//PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
 		cout << "\t\t\t\t\t   _____  _     _____ _____ _   _ _____           \n"
 			<< "\t\t\t\t\t  /  __ \\| |   |_   _|  ___| \\ | |_   _|         \n"
@@ -45,20 +45,20 @@ public:
 			<< "\t\t\t\t\t  | |    | |     | | |  __|| . ` | | |           \n"
 			<< "\t\t\t\t\t  | \\__/\\| |_____| |_| |___| |\\  | | |           \n"
 			<< "\t\t\t\t\t   \\____/\\_____/\\___/\\____/\\_| \\_/ \\_/           \n"
-			<< "\t\t\t\t\t =======================================\n\n\n";
+			<< "\t\t\t\t\t  =====================================\n\n\n";
 
 
 
 
 
-		cout << "\t\t\t  Hello dear " << c->getName() << ", How can we serve your pocket today ? \n"
-			<< "\t\t\t\t\t\t  Balance: " << c->getBalance() << "$\n"
-			<< "\t\t\t\t\t\t  ID: " << c->getID() << "\n\n"
+		cout << "\t\t\t\tHello dear " << c->getName() << ", How can we serve your pocket today ? \n"
+			<< "\t\t\t\t\t\t\tBalance: " << c->getBalance() << "$\n"
+			<< "\t\t\t\t\t\t\tID: " << c->getID() << "\n\n"
 			<< "\t\t\t\t1. Deposit.\n"
 			<< "\t\t\t\t2. Withdraw.\n"
 			<< "\t\t\t\t3. Transfer To.\n"
 			<< "\t\t\t\t4. Update Password.\n\n"
-			<< "\t\t\t\t Q. Logout.\n\n";
+			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
 	}
 
 	static void clientScreen(Client* c) // Too bloated, Needs refactoring.

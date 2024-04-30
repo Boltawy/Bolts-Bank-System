@@ -40,18 +40,20 @@ public:
 	}
 
 
-	void addEmployee(Employee obj)
+	static bool addEmployee(Employee obj)
 	{
 		if (isValidEmployee(obj))
 		{
 			Employee::allEmployees.push_back(obj);
+			return true;
 		}
 		else
 		{
-			cout << "Employee has invalid Properties.\n\n";
+			return false;
 		}
 	}
-	Employee* searchEmployee(int id) { //We return a pointer, not an object, so that we can return NULL if not found.
+
+	static Employee* searchEmployeeByID(int id) { //We return a pointer, not an object, so that we can return NULL if not found.
 
 		Employee* c = nullptr;
 
@@ -75,7 +77,7 @@ public:
 
 	void editEmployee(int id, string name, string password, double salary) {
 
-		Employee* c = searchEmployee(id);
+		Employee* c = searchEmployeeByID(id);
 		if (c != nullptr) {
 
 			c->setName(name);
@@ -90,7 +92,7 @@ public:
 
 private:
 	//Validation for objects before adding them to vector.
-	bool isValidEmployee(Employee& obj)
+	static bool isValidEmployee(Employee& obj)
 	{
 		if (
 			Validation::isValidName(obj.getName()) &&

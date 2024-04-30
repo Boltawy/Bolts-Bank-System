@@ -1,7 +1,6 @@
 #pragma once
 #include "FilesHelper.h"
-#include "EmployeeManager.h"
-//#include "AdminManager.h"
+#include "AdminManager.h"
 using namespace std;
 
 #define KEY_Q 113
@@ -20,7 +19,7 @@ public:
 	void static welcomeScreen()
 	{
 		system("Color 0E");
-		//PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		void frame1();
 		{
 			system("CLS");
@@ -48,7 +47,7 @@ public:
 				<< "    *=========================================================================================================*\n"
 				<< "                                                                                                               \n"
 				<< "                                                                                                               \n";
-			//Sleep(4500);
+			Sleep(4500);
 		}
 		while (!_kbhit())
 		{
@@ -270,8 +269,47 @@ public:
 	void static loginAsAdmin()
 	{
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		int ID;
+		string idStr;
+		string password;
 
-		cout << "Please Enter your name;";
+		cout << "Please Enter your ID: ";
+		getline(cin, idStr);
+		stringstream(idStr) >> ID;
+		cout << "Please Enter your Password: ";
+		getline(cin, password);
+		Admin* a = AdminManager::adminFindByID(ID);
+
+		if (a == NULL) //if not found.
+		{
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "ID not found, Please try again.";
+			Sleep(1000);
+			return;
+		}
+		else if (a != NULL) //if found.
+		{
+			if (a->getID() == ID && a->getPassword() == password)//if correct ID & password.
+			{
+				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
+				system("CLS");
+				system("Color 0A");
+				cout << "Login Successful! \n";
+				Sleep(1000);
+				AdminManager::adminScreen(a);
+			}
+			else
+			{
+				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+				system("CLS");
+				system("color 04");
+				cout << "Invalid Password, Please try again.\n";
+				Sleep(1000);
+				return;
+			}
+		}
 	}
 
 

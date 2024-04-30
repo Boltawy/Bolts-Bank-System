@@ -43,15 +43,16 @@ public:
 		return salary;
 	}
 	//Setters
-	void setSalary(double _salary) 
+	bool setSalary(double _salary) 
 	{
 		if (Validation::isValidSalary(_salary))
 		{
 			this->salary = _salary;
+			return true;
 		}
 		else
 		{
-			cout << "Invalid Salary.";
+			return false;
 		}
 	}
 	
