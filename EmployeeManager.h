@@ -12,6 +12,8 @@
 #define KEY_2 50
 #define KEY_3 51
 #define KEY_4 52
+#define KEY_5 53
+
 
 #pragma comment(lib, "winmm.lib")
 
@@ -42,8 +44,9 @@ public:
 			<< "\t\t\t\t\t1. Add a Client.\n"
 			<< "\t\t\t\t\t2. List all Clients.\n"
 			<< "\t\t\t\t\t3. Edit a Client.\n\n"
-			<< "\t\t\t\t\t4. Update Password.\n\n"
-			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
+			<< "\t\t\t\t\t4. Update Password.\n\n\n"
+			<< "\t\t\t\t\t\x1B[31m5. Quit Your Job.\n\n"
+			<< "\t\t\t\t\t\t\t\x1B[33mQ. Logout.\n\n";
 	}
 	static void employeeScreen(Employee* currentEmployee)
 	{
@@ -64,6 +67,12 @@ public:
 				break;
 			case KEY_4:
 				updatePassword(currentEmployee);
+				break;
+			case KEY_5:
+				if (employeeDeleteAccount(currentEmployee)) //if deleted
+				{
+					return;
+				}
 				break;
 			case KEY_Q:
 				PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
@@ -216,6 +225,41 @@ public:
 			cout << "Invalid Password.\n";
 			Sleep(1000);
 		}
+	}
+	static bool employeeDeleteAccount(Employee* currentemployee)
+	{
+		bool isDeleted = false;
+		auto it = Employee::allEmployees.begin();
+		system("CLS");
+		system("color 04");
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t======================================\n\n"
+			<< "\t\t\t\t        ARE YOU SURE YOU WANT TO QUIT THIS JOB ?\n"
+			<< "\t\t\t\t            NO ONE ELSE IS GOING TO HIRE YOU!\n\n"
+			<< "\t\t\t\t\t         Press (Y) to confirm.\n\n"
+			<< "\t\t\t\t\t======================================\n\n\t\t\t\t";
+		PlaySound(TEXT("warning.wav"), NULL, SND_FILENAME | SND_SYNC);
+		char key = _getch();
+		switch (key)
+		{
+		case KEY_Y:
+			it = remove_if(Employee::allEmployees.begin(), Employee::allEmployees.end(),
+				[currentemployee](const Employee& employee) {
+					return employee.getID() == currentemployee->getID();
+				});
+			Employee::allEmployees.erase(it, Employee::allEmployees.end());
+			PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("Color 0A");
+			cout << "Account Deleted Successfully.\n";
+			system("pause");
+			isDeleted = true;
+			break;
+		default:
+			break;
+		}
+		return isDeleted;
+
+
 	}
 };
 

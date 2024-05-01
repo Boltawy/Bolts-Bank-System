@@ -43,9 +43,9 @@ public:
 			<< "\t\t\t\t\t 2. List all Clients.\n"
 			<< "\t\t\t\t\t 3. Edit a Client.\n\n"
 			<< "\t\t\t\t\t 4. Update Password.\n\n"
-			<< "\t\t\t\t\t 5. Add an Admin.\n"
+			<< "\t\t\t\t\t 5. Add an Employee.\n"
 			<< "\t\t\t\t\t 6. List all Employees.\n"
-			<< "\t\t\t\t\t 7. Edit an Admin.\n\n"
+			<< "\t\t\t\t\t 7. Edit an Employee.\n\n"
 			<< "\t\t\t\t\t 8. List all Admins.\n\n"
 			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
     }
