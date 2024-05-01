@@ -27,7 +27,7 @@ public:
 		system("CLS");
 		system("Color 0E");
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		//PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
 		cout << "\t\t\t\t\t   _____  _     _____ _____ _   _ _____           \n"
 			<< "\t\t\t\t\t  /  __ \\| |   |_   _|  ___| \\ | |_   _|         \n"

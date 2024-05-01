@@ -21,7 +21,7 @@ public:
         system("Color 1F");
 
 		
-		cout << "\n\n\t\t\t\t    /$$$$$$        /$$               /$$          \n"
+		cout << "\n\t\t\t\t    /$$$$$$        /$$               /$$          \n"
 			<< "\t\t\t\t   /$$__  $$      | $$              |__/          \n"
 			<< "\t\t\t\t  | $$  \\ $$  /$$$$$$$ /$$$$$$/$$$$  /$$ /$$$$$$$ \n"
 			<< "\t\t\t\t  | $$$$$$$$ /$$__  $$| $$_  $$_  $$| $$| $$__  $$\n"
@@ -38,8 +38,7 @@ public:
 
 
 		cout << "\t\t\t Hello Boss " << currentAdmin->getName() << ", How many employees are you willing to fire today ? \n"
-			<< "\t\t\t\t\t\t Salary: " << currentAdmin->getSalary() << "$\n"
-			<< "\t\t\t\t\t\t ID: " << currentAdmin->getID() << "\n\n"
+			<< "\t\t\t\t\t\t Salary: " << currentAdmin->getSalary() << "$\n\n"
 			<< "\t\t\t\t\t 1. Add a Client.\n"
 			<< "\t\t\t\t\t 2. List all Clients.\n"
 			<< "\t\t\t\t\t 3. Edit a Client.\n"
