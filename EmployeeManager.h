@@ -252,7 +252,7 @@ public:
 			Sleep(1000);
 		}
 	}
-	static bool employeeDeleteAccount(Employee* currentemployee)
+	static bool employeeDeleteAccount(Employee* currentEmployee)
 	{
 		bool isDeleted = false;
 		auto it = Employee::allEmployees.begin();
@@ -269,8 +269,8 @@ public:
 		{
 		case KEY_Y:
 			it = remove_if(Employee::allEmployees.begin(), Employee::allEmployees.end(),
-				[currentemployee](const Employee& employee) {
-					return employee.getID() == currentemployee->getID();
+				[currentEmployee](const Employee& employee) {
+					return employee.getID() == currentEmployee->getID();
 				});
 			Employee::allEmployees.erase(it, Employee::allEmployees.end());
 			PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);

@@ -7,6 +7,7 @@
 #define KEY_7 55
 #define KEY_8 56
 #define KEY_9 57
+#define KEY_0 48
 
 class AdminManager :
     public EmployeeManager
@@ -39,16 +40,13 @@ public:
 
 		cout << "\t\t\t Hello Boss " << currentAdmin->getName() << ", How many employees are you willing to fire today ? \n"
 			<< "\t\t\t\t\t\t Salary: " << currentAdmin->getSalary() << "$\n\n"
-			<< "\t\t\t\t\t 1. Add a Client.\n"
-			<< "\t\t\t\t\t 2. List all Clients.\n"
-			<< "\t\t\t\t\t 3. Edit a Client.\n"
-			<< "\t\t\t\t\t 4. Remove a Client.\n\n"
-			<< "\t\t\t\t\t 5. Update Password.\n\n"
-			<< "\t\t\t\t\t 6. Add an Employee.\n"
-			<< "\t\t\t\t\t 7. List all Employees.\n"
-			<< "\t\t\t\t\t 8. Edit an Employee.\n\n"
-			<< "\t\t\t\t\t 9. List all Admins.\n\n"
-			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
+			<< "\t\t\t\t 1. Add a Client.\t\t5. Add an Employee.\n"
+			<< "\t\t\t\t 2. List all Clients.\t\t6. List all Employees.\n"
+			<< "\t\t\t\t 3. Edit a Client.\t\t7. Edit an Employee.\n"
+			<< "\t\t\t\t 4. Remove a Client.\t\t8. Fire an Employee. \n\n"
+			<< "\t\t\t\t\t\t 9. List all Admins.\n"
+			<< "\t\t\t\t\t\t 0. Update Password.\n\n"
+			<< "\t\t\t\t\t\t      Q. Logout.\n\n";
     }
 	static void adminScreen(Admin* currentAdmin)
 	{
@@ -71,19 +69,22 @@ public:
 			EmployeeManager::removeClient();
 			break;
 		case KEY_5:
-			updatePassword(currentAdmin);
-			break;
-		case KEY_6:
 			addEmployee();
 			break;
-		case KEY_7:
+		case KEY_6:
 			listAllEmployees();
 			break;
-		case KEY_8:
+		case KEY_7:
 			editEmployee();
+			break;
+		case KEY_8:
+			fireEmployee();
 			break;
 		case KEY_9:
 			listAllAdmins();
+		case KEY_0:
+			updatePassword(currentAdmin);
+			break;
 		case KEY_Q:
 			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 			return;
@@ -209,6 +210,53 @@ public:
 		}
 		cout << endl;
 		system("pause");
+	}
+	static void fireEmployee()
+	{
+		int employeeID = 0;
+		string idStr;
+		cout << "Enter Employee's ID: ";
+		getline(cin, idStr);
+		stringstream(idStr) >> employeeID;
+		Employee* currentEmployee = Admin::searchEmployeeByID(employeeID);
+		if (currentEmployee == NULL)
+		{
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "Employee not found, Please try again.\n";
+			Sleep(1000);
+		}
+		else
+		{
+			auto it = Employee::allEmployees.begin();
+			system("CLS");
+			system("color 04");
+			cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t======================================\n\n"
+				<< "\t\t\t\t      ARE YOU SURE YOU WANT TO FIRE THIS EMPLOYEE ?\n"
+				<< "\t\t\t\t          HE WON'T BE ABLE TO FEED HIS FAMILY!\n\n"
+				<< "\t\t\t\t\t         Press (Y) to confirm.\n\n"
+				<< "\t\t\t\t\t======================================\n\n\t\t\t\t";
+			PlaySound(TEXT("warning.wav"), NULL, SND_FILENAME | SND_SYNC);
+			char key = _getch();
+			switch (key)
+			{
+			case KEY_Y:
+				it = remove_if(Employee::allEmployees.begin(), Employee::allEmployees.end(),
+					[currentEmployee](const Employee& employee) {
+						return employee.getID() == currentEmployee->getID();
+					});
+				Employee::allEmployees.erase(it, Employee::allEmployees.end());
+				PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
+				system("CLS");
+				system("Color 0A");
+				cout << "Employee Fired Successfully.\n";
+				system("pause");
+				break;
+			default:
+				break;
+			}
+		}
 	}
 };
 
