@@ -74,7 +74,7 @@ public:
 			clientUpdatePassword(currentClient);
 			break;
 		case KEY_5:
-			if (deleteAccount(currentClient)) //if deleted
+			if (clientDeleteAccount(currentClient)) //if deleted
 			{
 				return;
 			}
@@ -231,7 +231,7 @@ public:
 				Sleep(1000);
 			}
 	}
-	static bool deleteAccount(Client* currentClient)
+	static bool clientDeleteAccount(Client* currentClient)
 	{
 		bool isDeleted = false;
 		auto it = Client::allClients.begin();
@@ -239,7 +239,7 @@ public:
 		system("color 04");
 		cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t======================================\n\n"
 			 << "\t\t\t\t     ARE YOU SURE YOU WANT TO DELETE THIS ACCOUNT ?\n"
-			 << "\t\t\t\t\t     THIS ACTION CAN'T BE UNDONE\n"
+			 << "\t\t\t\t\t     THIS ACTION CAN'T BE UNDONE\n\n"
 			 << "\t\t\t\t\t         Press (Y) to confirm.\n\n"
 			 << "\t\t\t\t\t======================================\n\n\t\t\t\t";
 		PlaySound(TEXT("warning.wav"), NULL, SND_FILENAME | SND_SYNC);
