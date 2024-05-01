@@ -6,6 +6,7 @@
 #define KEY_6 54
 #define KEY_7 55
 #define KEY_8 56
+#define KEY_9 57
 
 class AdminManager :
     public EmployeeManager
@@ -41,12 +42,13 @@ public:
 			<< "\t\t\t\t\t\t ID: " << currentAdmin->getID() << "\n\n"
 			<< "\t\t\t\t\t 1. Add a Client.\n"
 			<< "\t\t\t\t\t 2. List all Clients.\n"
-			<< "\t\t\t\t\t 3. Edit a Client.\n\n"
-			<< "\t\t\t\t\t 4. Update Password.\n\n"
-			<< "\t\t\t\t\t 5. Add an Employee.\n"
-			<< "\t\t\t\t\t 6. List all Employees.\n"
-			<< "\t\t\t\t\t 7. Edit an Employee.\n\n"
-			<< "\t\t\t\t\t 8. List all Admins.\n\n"
+			<< "\t\t\t\t\t 3. Edit a Client.\n"
+			<< "\t\t\t\t\t 4. Remove a Client.\n\n"
+			<< "\t\t\t\t\t 5. Update Password.\n\n"
+			<< "\t\t\t\t\t 6. Add an Employee.\n"
+			<< "\t\t\t\t\t 7. List all Employees.\n"
+			<< "\t\t\t\t\t 8. Edit an Employee.\n\n"
+			<< "\t\t\t\t\t 9. List all Admins.\n\n"
 			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
     }
 	static void adminScreen(Admin* currentAdmin)
@@ -67,18 +69,21 @@ public:
 			editClient();
 			break;
 		case KEY_4:
-			updatePassword(currentAdmin);
+			EmployeeManager::removeClient();
 			break;
 		case KEY_5:
-			addEmployee();
+			updatePassword(currentAdmin);
 			break;
 		case KEY_6:
-			listAllEmployees();
+			addEmployee();
 			break;
 		case KEY_7:
-			editEmployee();
+			listAllEmployees();
 			break;
 		case KEY_8:
+			editEmployee();
+			break;
+		case KEY_9:
 			listAllAdmins();
 		case KEY_Q:
 			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);

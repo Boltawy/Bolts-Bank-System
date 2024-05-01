@@ -13,6 +13,7 @@
 #define KEY_3 51
 #define KEY_4 52
 #define KEY_5 53
+#define KEY_6 54
 
 
 #pragma comment(lib, "winmm.lib")
@@ -43,9 +44,10 @@ public:
 			<< "\t\t\t\t\t\t\tID: " << currentEmployee->getID() << "\n\n"
 			<< "\t\t\t\t\t1. Add a Client.\n"
 			<< "\t\t\t\t\t2. List all Clients.\n"
-			<< "\t\t\t\t\t3. Edit a Client.\n\n"
-			<< "\t\t\t\t\t4. Update Password.\n\n\n"
-			<< "\t\t\t\t\t\x1B[31m5. Quit Your Job.\n\n"
+			<< "\t\t\t\t\t3. Edit a Client.\n"
+			<< "\t\t\t\t\t4. Remove a Client.\n\n"
+			<< "\t\t\t\t\t5. Update Password.\n\n"
+			<< "\t\t\t\t\t\x1B[31m6. Quit Your Job.\n\n"
 			<< "\t\t\t\t\t\t\t\x1B[33mQ. Logout.\n\n";
 	}
 	static void employeeScreen(Employee* currentEmployee)
@@ -66,9 +68,12 @@ public:
 				editClient();
 				break;
 			case KEY_4:
-				updatePassword(currentEmployee);
+				removeClient();
 				break;
 			case KEY_5:
+				updatePassword(currentEmployee);
+				break;
+			case KEY_6:
 				if (employeeDeleteAccount(currentEmployee)) //if deleted
 				{
 					return;
@@ -187,6 +192,27 @@ public:
 				cout << "Invalid Balance\n";
 			}
 			system("Pause");
+		}
+	}
+	static void removeClient() 
+	{
+		int clientID = 0;
+		string idStr;
+		cout << "Enter Client's ID: ";
+		getline(cin, idStr);
+		stringstream(idStr) >> clientID;
+		Client* c = Employee::searchClientByID(clientID);
+		if (c == NULL)
+		{
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_ASYNC);
+			system("CLS");
+			system("color 04");
+			cout << "Client not found, Please try again.\n";
+			Sleep(1000);
+		}
+		else
+		{
+			ClientManager::clientDeleteAccount(c);
 		}
 	}
 	static void updatePassword(Employee* currentEmployee)
