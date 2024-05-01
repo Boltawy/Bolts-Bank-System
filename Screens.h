@@ -46,7 +46,7 @@ public:
 				<< "    *=========================================================================================================*\n"
 				<< "                                                                                                               \n"
 				<< "                                                                                                               \n";
-			//Sleep(4500);
+			Sleep(4500);
 		}
 		while (!_kbhit())
 		{
@@ -173,6 +173,7 @@ public:
 				loginAsAdmin();
 				break;
 			default:
+				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_SYNC);
 				break;
 			}
 		}

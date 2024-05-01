@@ -24,7 +24,6 @@ public:
 	//Screen & Menu
 	static void printEmployeeMenu(Employee* currentEmployee)
 	{
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
 		system("Color 0A");
@@ -82,7 +81,11 @@ public:
 			case KEY_Q:
 				PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 				return;
+			default:
+				PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_SYNC);
+				break;
 			}
+
 		}
 	}
 
@@ -185,11 +188,11 @@ public:
 			stringstream(balanceStr) >> newBalance;
 			if (c->setBalance(newBalance))
 			{
-				cout << "Balance Update Successful\n";
+				cout << "Balance Update Successful\n\n";
 			}
 			else
 			{
-				cout << "Invalid Balance\n";
+				cout << "Invalid Balance\n\n";
 			}
 			system("Pause");
 		}

@@ -16,8 +16,7 @@ public:
 	//Screen & Menu.
     static void printAdminMenu(Admin* currentAdmin)
     {
-        PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-        //PlaySound(TEXT("admin.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        PlaySound(TEXT("admin.wav"), NULL, SND_FILENAME | SND_ASYNC);
         system("CLS");
         system("Color 1F");
 
@@ -82,12 +81,16 @@ public:
 			break;
 		case KEY_9:
 			listAllAdmins();
+			break;
 		case KEY_0:
 			updatePassword(currentAdmin);
 			break;
 		case KEY_Q:
 			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 			return;
+		default:
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_SYNC);
+			break;
 		}
 		}
 	}

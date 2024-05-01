@@ -26,7 +26,6 @@ public:
 	{
 		system("CLS");
 		system("Color 0E");
-		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
 		cout << "\t\t\t\t\t   _____  _     _____ _____ _   _ _____           \n"
@@ -82,6 +81,9 @@ public:
 		case KEY_Q:
 			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 			return;
+		default:
+			PlaySound(TEXT("error.wav"), NULL, SND_FILENAME | SND_SYNC);
+			break;
 		}
 		}
 	}
