@@ -41,7 +41,7 @@ public:
 	}
 
 	//Getters
-	double getBalance()
+	double getBalance() const
 	{
 		return balance;
 	}

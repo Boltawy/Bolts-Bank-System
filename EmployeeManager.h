@@ -22,7 +22,7 @@ public:
 	static void printEmployeeMenu(Employee* currentEmployee)
 	{
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
 		system("Color 0A");
 		cout << "                                      ________  _________ _     _______   _______ _____ \n"

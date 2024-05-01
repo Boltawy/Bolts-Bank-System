@@ -38,7 +38,7 @@ public:
 	}
 
 	//Getters
-	double getSalary()
+	double getSalary() const
 	{
 		return salary;
 	}

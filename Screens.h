@@ -7,7 +7,7 @@ using namespace std;
 #define KEY_1 49
 #define KEY_2 50
 #define KEY_3 51
-#define KEY_DELETE 127 
+//#define KEY_DELETE 127 
 
 #pragma comment(lib, "winmm.lib")
 
@@ -19,7 +19,7 @@ public:
 	void static welcomeScreen()
 	{
 		system("Color 0E");
-		PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("main2.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		void frame1();
 		{
 			system("CLS");
@@ -47,7 +47,7 @@ public:
 				<< "    *=========================================================================================================*\n"
 				<< "                                                                                                               \n"
 				<< "                                                                                                               \n";
-			Sleep(4500);
+			//Sleep(4500);
 		}
 		while (!_kbhit())
 		{
@@ -119,7 +119,7 @@ public:
 	//login
 	void static printLoginMenu()
 	{
-		PlaySound(TEXT("welcome.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("welcome.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
 		system("Color 0E");
 		cout << "\n      ========================================================================================================= \n"

@@ -4,13 +4,16 @@
 #include <Windows.h>
 #include <sstream>
 #include <mmsystem.h>
+#include <algorithm>
 
 #define KEY_Q 113
 #define KEY_1 49
 #define KEY_2 50
 #define KEY_3 51
 #define KEY_4 52
-#define KEY_DELETE 127 
+#define KEY_5 53 
+#define KEY_Y 121
+#define KEY_N 78
 
 #pragma comment(lib, "winmm.lib")
 
@@ -24,7 +27,7 @@ public:
 		system("CLS");
 		system("Color 0E");
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-		PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		//PlaySound(TEXT("client.wav"), NULL, SND_FILENAME | SND_ASYNC);
 
 		cout << "\t\t\t\t\t   _____  _     _____ _____ _   _ _____           \n"
 			<< "\t\t\t\t\t  /  __ \\| |   |_   _|  ___| \\ | |_   _|         \n"
@@ -45,7 +48,8 @@ public:
 			<< "\t\t\t\t2. Withdraw.\n"
 			<< "\t\t\t\t3. Transfer To.\n"
 			<< "\t\t\t\t4. Update Password.\n\n"
-			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
+			<< "\t\t\t\t\x1B[31m5. Delete Your Account.\n\n"
+			<< "\t\t\t\t\t\t\t\x1B[33mQ. Logout.\n\n";
 	}
 
 	static void clientScreen(Client* currentClient)
@@ -68,6 +72,12 @@ public:
 			break;
 		case KEY_4:
 			clientUpdatePassword(currentClient);
+			break;
+		case KEY_5:
+			if (deleteAccount(currentClient)) //if deleted
+			{
+				return;
+			}
 			break;
 		case KEY_Q:
 			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
@@ -220,6 +230,41 @@ public:
 				cout << "Invalid Password.\n";
 				Sleep(1000);
 			}
+	}
+	static bool deleteAccount(Client* currentClient)
+	{
+		bool isDeleted = false;
+		auto it = Client::allClients.begin();
+		system("CLS");
+		system("color 04");
+		cout << "\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t======================================\n\n"
+			 << "\t\t\t\t     ARE YOU SURE YOU WANT TO DELETE THIS ACCOUNT ?\n"
+			 << "\t\t\t\t\t     THIS ACTION CAN'T BE UNDONE\n"
+			 << "\t\t\t\t\t         Press (Y) to confirm.\n\n"
+			 << "\t\t\t\t\t======================================\n\n\t\t\t\t";
+		PlaySound(TEXT("warning.wav"), NULL, SND_FILENAME | SND_SYNC);
+		char key = _getch();
+		switch (key)
+		{
+		case KEY_Y:
+		 it = remove_if(Client::allClients.begin(), Client::allClients.end(),
+			[currentClient](const Client& client) {
+				return client.getID() == currentClient->getID();
+			});
+		Client::allClients.erase(it, Client::allClients.end());
+		PlaySound(TEXT("success.wav"), NULL, SND_FILENAME | SND_ASYNC);
+		system("CLS");
+		system("Color 0A");
+		cout << "Account Deleted Successfully.\n";
+		system("pause");
+		isDeleted = true;
+		break;
+		default:
+			break;
+		}
+		return isDeleted;
+
+
 	}
 };
 

@@ -15,15 +15,15 @@ public:
 		: name(Validation::validName(name)), password(Validation::validPassword(password))
 	{}
 	//Getters
-	 string getName()
+	 string getName() const
 	{
 		return name;
 	}
-	 string getPassword()
+	 string getPassword() const
 	{
 		return password;
 	}
-	 int getID()
+	 int getID() const
 	{
 		return id;
 	}

@@ -15,7 +15,7 @@ public:
     static void printAdminMenu(Admin* currentAdmin)
     {
         PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
-        PlaySound(TEXT("admin.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        //PlaySound(TEXT("admin.wav"), NULL, SND_FILENAME | SND_ASYNC);
         system("CLS");
         system("Color 1F");
 
