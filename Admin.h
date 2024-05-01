@@ -34,6 +34,7 @@ public:
 	void display()
 	{
 		cout << "Admin Name: " << name << endl
+			<< "Admin Password: " << password << endl
 			<< "Admin ID: " << id << endl
 			<< "Admin Salary: " << salary << endl
 			<< "\n ================================== \n\n";

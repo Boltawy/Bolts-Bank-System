@@ -24,7 +24,7 @@ public:
 		PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		PlaySound(TEXT("employee.wav"), NULL, SND_FILENAME | SND_ASYNC);
 		system("CLS");
-		system("Color 0B");
+		system("Color 0A");
 		cout << "                                      ________  _________ _     _______   _______ _____ \n"
 			<< "                                     |  ___|  \\/  || ___ \\ |   |  _  \\ \\ / /  ___|  ___|\n"
 			<< "                                     | |__ | .  . || |_/ / |   | | | |\\ V /| |__ | |__\n"

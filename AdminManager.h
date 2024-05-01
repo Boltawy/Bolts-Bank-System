@@ -20,15 +20,15 @@ public:
         system("Color 1F");
 
 		
-		cout << "\n\n\t\t\t\t  /$$$$$$        /$$               /$$          \n"
-			<< "\t\t\t\t /$$__  $$      | $$              |__/          \n"
-			<< "\t\t\t\t| $$  \\ $$  /$$$$$$$ /$$$$$$/$$$$  /$$ /$$$$$$$ \n"
-			<< "\t\t\t\t| $$$$$$$$ /$$__  $$| $$_  $$_  $$| $$| $$__  $$\n"
-			<< "\t\t\t\t| $$__  $$| $$  | $$| $$ \\ $$ \\ $$| $$| $$  \\ $$\n"
-			<< "\t\t\t\t| $$  | $$| $$  | $$| $$ | $$ | $$| $$| $$  | $$\n"
-			<< "\t\t\t\t| $$  | $$|  $$$$$$$| $$ | $$ | $$| $$| $$  | $$\n"
-			<< "\t\t\t\t|__/  |__/ \\_______/|__/ |__/ |__/|__/|__/  |__/\n"
-            << "\t\t\t\t ==============================================\n\n";
+		cout << "\n\n\t\t\t\t    /$$$$$$        /$$               /$$          \n"
+			<< "\t\t\t\t   /$$__  $$      | $$              |__/          \n"
+			<< "\t\t\t\t  | $$  \\ $$  /$$$$$$$ /$$$$$$/$$$$  /$$ /$$$$$$$ \n"
+			<< "\t\t\t\t  | $$$$$$$$ /$$__  $$| $$_  $$_  $$| $$| $$__  $$\n"
+			<< "\t\t\t\t  | $$__  $$| $$  | $$| $$ \\ $$ \\ $$| $$| $$  \\ $$\n"
+			<< "\t\t\t\t  | $$  | $$| $$  | $$| $$ | $$ | $$| $$| $$  | $$\n"
+			<< "\t\t\t\t  | $$  | $$|  $$$$$$$| $$ | $$ | $$| $$| $$  | $$\n"
+			<< "\t\t\t\t  |__/  |__/ \\_______/|__/ |__/ |__/|__/|__/  |__/\n"
+            << "\t\t\t\t   ==============================================\n\n";
                                                 
                                                 
 
@@ -39,14 +39,15 @@ public:
 		cout << "\t\t\t Hello Boss " << currentAdmin->getName() << ", How many employees are you willing to fire today ? \n"
 			<< "\t\t\t\t\t\t Salary: " << currentAdmin->getSalary() << "$\n"
 			<< "\t\t\t\t\t\t ID: " << currentAdmin->getID() << "\n\n"
-			<< "\t\t\t\t\t1. Add a Client.\n"
-			<< "\t\t\t\t\t2. List all Clients.\n"
-			<< "\t\t\t\t\t3. Edit a Client.\n\n"
-			<< "\t\t\t\t\t4. Update Password.\n\n"
-			<< "\t\t\t\t\t5. Add an Employee.\n"
-			<< "\t\t\t\t\t6. List all Employees.\n"
-			<< "\t\t\t\t\t7. Edit an Employee.\n\n"
-			<< "\t\t\t\t\t\t    Q. Logout.\n\n";
+			<< "\t\t\t\t\t 1. Add a Client.\n"
+			<< "\t\t\t\t\t 2. List all Clients.\n"
+			<< "\t\t\t\t\t 3. Edit a Client.\n\n"
+			<< "\t\t\t\t\t 4. Update Password.\n\n"
+			<< "\t\t\t\t\t 5. Add an Admin.\n"
+			<< "\t\t\t\t\t 6. List all Employees.\n"
+			<< "\t\t\t\t\t 7. Edit an Admin.\n\n"
+			<< "\t\t\t\t\t 8. List all Admins.\n\n"
+			<< "\t\t\t\t\t\t\tQ. Logout.\n\n";
     }
 	static void adminScreen(Admin* currentAdmin)
 	{
@@ -77,6 +78,8 @@ public:
 		case KEY_7:
 			editEmployee();
 			break;
+		case KEY_8:
+			listAllAdmins();
 		case KEY_Q:
 			PlaySound(TEXT("message.wav"), NULL, SND_FILENAME | SND_SYNC);
 			return;
@@ -104,15 +107,15 @@ public:
 		string password;
 		string salaryStr;
 		double salary;
-		cout << "Enter Employee's Name: ";
+		cout << "Enter Admin's Name: ";
 		getline(cin, name);
-		cout << "Enter Employee's Password: ";
+		cout << "Enter Admin's Password: ";
 		getline(cin, password);
-		cout << "Enter Employee's Salary: ";
+		cout << "Enter Admin's Salary: ";
 		getline(cin, salaryStr);
 		stringstream(salaryStr) >> salary;
 
-		if (Admin::addEmployee(Employee::Employee(name, password, salary)))
+		if (Admin::addEmployee(Admin::Admin(name, password, salary)))
 		{
 			cout << "\nEmployee Added Successfully!\n";
 		}
@@ -126,9 +129,9 @@ public:
 	{
 		system("CLS");
 		cout << "----------------------------------\nEmployee Data:\n----------------------------------\n \n";
-		for (int i = 0; i < Employee::allEmployees.size(); i++) {
+		for (int i = 0; i < Admin::allEmployees.size(); i++) {
 
-			Employee::allEmployees[i].display();
+			Admin::allEmployees[i].display();
 		}
 		cout << endl;
 		system("pause");
@@ -191,6 +194,17 @@ public:
 			}
 			system("Pause");
 		}
+	}
+	static void listAllAdmins()
+	{
+		system("CLS");
+		cout << "----------------------------------\nAdmin Data:\n----------------------------------\n \n";
+		for (int i = 0; i < Admin::allAdmins.size(); i++) {
+
+			Admin::allAdmins[i].display();
+		}
+		cout << endl;
+		system("pause");
 	}
 };
 
